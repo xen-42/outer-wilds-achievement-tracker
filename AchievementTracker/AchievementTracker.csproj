@@ -3,8 +3,8 @@
     <ProjectGuid>{8A39F9E7-1A89-430C-9C3E-BDFB3B7E17DF}</ProjectGuid>
     <TargetFramework>net48</TargetFramework>
     <OutputPath>Build</OutputPath>
-    <AssemblyTitle>ModTemplate</AssemblyTitle>
-    <Product>ModTemplate</Product>
+    <AssemblyTitle>AchievementTracker</AssemblyTitle>
+    <Product>AchievementTracker</Product>
     <Copyright>Copyright ©  2020</Copyright>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
@@ -28,6 +28,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModTemplate.csproj.user" />
+    <Content Include="AchievementTracker.csproj.user" />
   </ItemGroup>
 </Project>
