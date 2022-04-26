@@ -73,7 +73,7 @@ namespace AchievementTracker
         {
             if (!_achievements.TryGetValue(uniqueID, out AchievementInfo achievement)) return;
 
-            Logger.Log($"Earned achievement {achievement.GetName()} : {achievement.GetDescription()} from {achievement.ModName}");
+            Logger.Log($"Earned achievement! [{achievement.ModName}] [{achievement.GetName()}] [{achievement.GetDescription()}]");
             AchievementData.EarnAchievement(uniqueID);
         }
 
