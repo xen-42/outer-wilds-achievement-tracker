@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AchievementTracker
+namespace AchievementTracker.Util
 {
     public static class Logger
     {
         public static void Log(string msg)
         {
-            AchievementTracker.Instance.ModHelper.Console.WriteLine("Log: " + msg, OWML.Common.MessageType.Info);
+            Main.Instance.ModHelper.Console.WriteLine("[Achievements] Log: " + msg, OWML.Common.MessageType.Info);
         }
 
         public static void LogError(string msg)
         {
-            AchievementTracker.Instance.ModHelper.Console.WriteLine("Error: " + msg, OWML.Common.MessageType.Error);
+            Main.Instance.ModHelper.Console.WriteLine("[Achievements] Error: " + msg, OWML.Common.MessageType.Error);
         }
     }
 }

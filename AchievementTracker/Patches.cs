@@ -10,12 +10,12 @@ namespace AchievementTracker
     {
         public static void Apply()
         {
-            AchievementTracker.Instance.ModHelper.HarmonyHelper.AddPrefix<Achievements>("Earn", typeof(Patches), nameof(Patches.OnAchievementEarn));
+            Main.Instance.ModHelper.HarmonyHelper.AddPrefix<Achievements>(nameof(Achievements.Earn), typeof(Patches), nameof(Patches.OnAchievementEarn));
         }
 
         public static void OnAchievementEarn(Achievements.Type type)
         {
-            AchievementManager.Earn(type);
+            AchievementManager.Earn(type.ToString());
         }
     }
 }

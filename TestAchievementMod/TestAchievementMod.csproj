@@ -3,8 +3,8 @@
     <ProjectGuid>{8A39F9E7-1A89-430C-9C3E-BDFB3B7E17DF}</ProjectGuid>
     <TargetFramework>net48</TargetFramework>
     <OutputPath>Build</OutputPath>
-    <AssemblyTitle>AchievementTracker</AssemblyTitle>
-    <Product>AchievementTracker</Product>
+    <AssemblyTitle>TestAchievementMod</AssemblyTitle>
+    <Product>TestAchievementMod</Product>
     <Copyright>Copyright ©  2020</Copyright>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
@@ -34,9 +34,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AchievementTracker.csproj.user" />
+    <Compile Remove="Menus\**" />
+    <EmbeddedResource Remove="Menus\**" />
+    <None Remove="Menus\**" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Menus\" />
+    <Content Include="TestAchievementMod.csproj.user" />
   </ItemGroup>
 </Project>

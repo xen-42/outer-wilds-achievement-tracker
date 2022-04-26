@@ -1,5 +1,9 @@
-﻿using System;
+﻿using AchievementTracker.External;
+using AchievementTracker.Util;
+using OWML.ModHelper;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,174 +12,273 @@ namespace AchievementTracker
 {
     public static class AchievementManager
     {
-        public static void GetStats()
-        {
+        private static Dictionary<string, AchievementInfo> _achievements = new Dictionary<string, AchievementInfo>();
 
+        public static void Init()
+        {
+            _achievements.Clear();
+
+            // Register all the stock achievements
+            foreach (Achievements.Type type in Enum.GetValues(typeof(Achievements.Type)))
+            {
+                // Idk what this achievement is but we don't want it
+                if (type == Achievements.Type.TOTAL) continue;
+
+                var info = GetStockAchievementInfo(type);
+
+                RegisterAchievement(type.ToString(), info.Secret, info.ModName);
+            }
+
+            // Register their translations
+            foreach (TextTranslation.Language lang in Enum.GetValues(typeof(TextTranslation.Language)))
+            {
+                var folder = $"{Main.Instance.ModHelper.Manifest.ModFolderPath}";
+                var filename = $"Translations/{lang.ToString().ToLower()}.json";
+                if (File.Exists($"{folder}{filename}"))
+                {
+                    try
+                    {
+                        var translationTable = new TranslationData($"{folder}{filename}").AchievementTranslations;
+                        foreach (var uniqueID in translationTable.Keys)
+                        {
+                            var name = translationTable[uniqueID].Name;
+                            var description = translationTable[uniqueID].Description;
+                            RegisterTranslation(uniqueID, lang, name, description);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        Logger.LogError($"Failed to load translation data for {lang}\n{ex.Message}, {ex.StackTrace}");
+                    }
+                }
+            }
         }
 
-        public static void Earn(Achievements.Type achievement)
+        public static void RegisterAchievement(string uniqueID, bool secret, string modName)
         {
-            OnEarn(achievement.ToString(), GetAchievementInfo(achievement));
+            if (_achievements.ContainsKey(uniqueID)) return;
+
+            _achievements.Add(uniqueID, new AchievementInfo(uniqueID, modName, secret));
         }
 
-        public static void EarnCustom(string uniqueID)
+        public static void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description)
         {
-                  
+            if (_achievements.TryGetValue(uniqueID, out var info))
+            {
+                info.AddTranslation(language, name, description);
+            }
         }
 
-        private static void OnEarn(string uniqueID, AchievementInfo info)
+        public static void Earn(string uniqueID)
         {
-            Logger.Log($"Earned achievement {info.Name} : {info.Description}");
+            if (!_achievements.TryGetValue(uniqueID, out AchievementInfo achievement)) return;
+
+            Logger.Log($"Earned achievement {achievement.GetName()} : {achievement.GetDescription()} from {achievement.ModName}");
             AchievementData.EarnAchievement(uniqueID);
         }
 
-        public static AchievementInfo GetAchievementInfo(Achievements.Type type)
+        public static Dictionary<string, AchievementInfo> GetAchievements()
         {
-            string name;
-            string description;
+            return _achievements;
+        }
+
+        private static AchievementInfo GetStockAchievementInfo(Achievements.Type type)
+        {
+            string modName;
+            bool secret;
             switch (type)
             {
                 case Achievements.Type.TERRIBLE_FATE:
-                    name = "You've met a terrible fate.";
-                    description = "No going back.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.WHATS_THIS_BUTTON:
-                    name = "Hey, what's this button do?";
-                    description = "Press the ejection button in the ship.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.ALPHA_PILOT:
-                    name = "Hotshot";
-                    description = "Manually fly to the Sun Station.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.YOU_TRIED:
-                    name = "It was worth a shot.";
-                    description = "You tried to escape the solar system.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.BEGINNERS_LUCK:
-                    name = "Beginner's Luck";
-                    description = "Reach the Eye of the Universe in one loop.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.SATELLITE:
-                    name = "Rigidbody";
-                    description = "De-orbit the Hearthian satellite.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.HEARTH_TO_MOON:
-                    name = "From the Hearth to the Moon";
-                    description = "Land the model rocket on Attlerock.";
+                    modName = "Outer Wilds";
+                    secret = false;
                     break;
                 case Achievements.Type.DEEP_IMPACT:
-                    name = "Deep Impact";
-                    description = "Enter Giant's Deep ocean fast enough to break through the current.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.HARMONIC_CONVERGENCE:
-                    name = "Harmonic Convergence";
-                    description = "Pick up all traveler instruments simultaneously with your signalscope.";
+                    modName = "Outer Wilds";
+                    secret = false;
                     break;
                 case Achievements.Type.MUSEUM:
-                    name = "It belongs in a museum!";
-                    description = "Bring an artifact back to the museum.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.DIEHARD:
-                    name = "Die Hard";
-                    description = "End a time loop (Alive) after having taken (and healed) over 1000 damage.";
+                    modName = "Outer Wilds";
+                    secret = false;
                     break;
                 case Achievements.Type.PCHOOOOOOO:
-                    name = "Pchooooooo!";
-                    description = "Launch your ship with a gravity cannon.";
+                    modName = "Outer Wilds";
+                    secret = false;
                     break;
                 case Achievements.Type.GONE_IN_60_SECONDS:
-                    name = "Gone In 60 Seconds";
-                    description = "Die within 60 seconds of waking up.";
+                    modName = "Outer Wilds";
+                    secret = false;
                     break;
                 case Achievements.Type.CARCINOGENS:
-                    name = "Mmmm, Carcinogens...";
-                    description = "Eat 10 burnt marshmallows.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.CUTTING_IT_CLOSE:
-                    name = "Cutting it Close";
-                    description = "Use your suit's oxygen in an ill-advised manner.";
+                    modName = "Outer Wilds";
+                    secret = false;
                     break;
                 case Achievements.Type.MICAS_WRATH:
-                    name = "Mica's Wrath";
-                    description = "Destroy the Model Rocket by flying into the sun or Hollow's Lantern.";
+                    modName = "Outer Wilds";
+                    secret = true;
                     break;
                 case Achievements.Type.STUDIOUS:
-                    name = "Archaeologist";
-                    description = "Complete the ship log.";
+                    modName = "Outer Wilds";
+                    secret = false;
                     break;
                 case Achievements.Type.AROUND_THE_WORLD:
-                    name = "Around the world in 90 seconds";
-                    description = "Raft around the Stranger in under 90 seconds.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.SILENCED_CARTOGRAPHER:
-                    name = "The Silenced Cartographer";
-                    description = "Render the Deep Space Satellite inoperable.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.TUBULAR:
-                    name = "Tubular!";
-                    description = "Ride the face of the wave for at least 15 seconds on a raft.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.EARLY_ADOPTER:
-                    name = "Early Adopter";
-                    description = "Attempt to use the second artifact prototype. Curiosity killed the cat, but a time loop brought it back.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.GRATE_FILTER:
-                    name = "The Grate Filter";
-                    description = "Swim through the dam grate. Not everyone makes it!";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.FLAT_HEARTHER:
-                    name = "Flat Hearther";
-                    description = "Stand your ground beneath a moving chain elevator.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.CELCIUS:
-                    name = "Celsius 232.78";
-                    description = "This knowledge isn't going to forbid itself!";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.GHOSTS:
-                    name = "Ghosts in the Machine";
-                    description = "Reach all 3 Forbidden Archives in a single loop without getting caught.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.SLEEP_WAKE_REPEAT:
-                    name = "Sleep. Wake. Repeat.";
-                    description = "Be woken up from a dream 5 different ways in a single loop.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.SIMULATION:
-                    name = "Simulation Hypothesis";
-                    description = "Attempt to use the artifact at a normal campfire. Well, that settles that!";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.FIRE_ARROWS:
-                    name = "Fire Arrows";
-                    description = "Shoot the Little Scout at the artificial sun in the Stranger.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.ONE_NINE:
-                    name = "1 / 900";
-                    description = "Yahaha! You found me!";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.TAKEMEALIVE:
-                    name = "You'll Never Take Me Alive!";
-                    description = "Escape your pursuers by jumping to your \"death\" instead of dodging past them.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 case Achievements.Type.OOFMYBONES:
-                    name = "Oof Ouch, My Bones";
-                    description = "Have your spine adjusted by a pursuer.";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
                 default:
-                    name = "Wait what";
-                    description = "This is impossible, contact xen and tell me why this happened";
+                    modName = "Echoes of the Eye";
+                    secret = true;
                     break;
             }
 
-            return new AchievementInfo(name, description);
+            return new AchievementInfo(type.ToString(), modName, secret);
         }
 
         public class AchievementInfo
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public AchievementInfo(string name, string description)
+            private Dictionary<TextTranslation.Language, string> _nameDict;
+            private Dictionary<TextTranslation.Language, string> _descriptionDict;
+            public string UniqueID { get; private set; }
+            public string ModName { get; private set; }
+            public bool Secret { get; private set; }
+            public AchievementInfo(string uniqueID, string modName, bool secret)
             {
-                Name = name;
-                Description = description;
+                _nameDict = new Dictionary<TextTranslation.Language, string>();
+                _descriptionDict = new Dictionary<TextTranslation.Language, string>();
+                UniqueID = uniqueID;
+                ModName = modName;
+                Secret = secret;
+            }
+
+            public void AddTranslation(TextTranslation.Language language, string name, string description)
+            {
+                _nameDict[language] = name;
+                _descriptionDict[language] = description;
+            }
+
+            public string GetName()
+            {
+                var language = TextTranslation.Get().m_language;
+
+                string name;
+                if (_nameDict.TryGetValue(language, out name))
+                {
+                    return name;
+                }
+                else if (_nameDict.TryGetValue(TextTranslation.Language.ENGLISH, out name))
+                {
+                    return name;
+                }
+                else
+                {
+                    return UniqueID;
+                }
+            }
+
+            public string GetDescription()
+            {
+                var language = TextTranslation.Get().m_language;
+
+                string description;
+                if (_descriptionDict.TryGetValue(language, out description))
+                {
+                    return description;
+                }
+                else if (_descriptionDict.TryGetValue(TextTranslation.Language.ENGLISH, out description))
+                {
+                    return description;
+                }
+                else
+                {
+                    return "";
+                }
             }
         }
     }

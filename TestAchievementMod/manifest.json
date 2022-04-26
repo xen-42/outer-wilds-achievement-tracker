@@ -1,0 +1,9 @@
+{
+  "filename": "TestAchievementMod.dll",
+  "author": "xen",
+  "name": "Test Achievement Mod",
+  "uniqueName": "xen.TestAchievementMod",
+  "version": "0.1.0",
+  "owmlVersion": "2.0.0",
+  "dependencies": [ "xen.AchievementTracker" ]
+}

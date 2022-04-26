@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Logger = AchievementTracker.Util.Logger;
 
-namespace AchievementTracker
+namespace AchievementTracker.External
 {
     public static class AchievementData
     {
@@ -15,10 +16,10 @@ namespace AchievementTracker
 
         public static bool Load()
         {
-            _activeProfileName = StandaloneProfileManager.SharedInstance.currentProfile.profileName;
+            _activeProfileName = StandaloneProfileManager.SharedInstance?.currentProfile?.profileName ?? "Default";
             try
             {
-                _saveFile = AchievementTracker.Instance.ModHelper.Storage.Load<AchievementSaveFile>(_fileName);
+                _saveFile = Main.Instance.ModHelper.Storage.Load<AchievementSaveFile>(_fileName);
                 if (!_saveFile.Profiles.ContainsKey(_activeProfileName)) _saveFile.Profiles.Add(_activeProfileName, new AchievementProfile());
                 _activeProfile = _saveFile.Profiles[_activeProfileName];
                 Logger.Log($"Loaded save data for {_activeProfileName}");
@@ -31,7 +32,7 @@ namespace AchievementTracker
                     _saveFile = new AchievementSaveFile();
                     _saveFile.Profiles.Add(_activeProfileName, new AchievementProfile());
                     _activeProfile = _saveFile.Profiles[_activeProfileName];
-                    AchievementTracker.Instance.ModHelper.Storage.Save(_saveFile, _fileName);
+                    Main.Instance.ModHelper.Storage.Save(_saveFile, _fileName);
                     Logger.Log($"Loaded save data for {_activeProfileName}");
                 }
                 catch (Exception e)
@@ -46,7 +47,7 @@ namespace AchievementTracker
         public static void Save()
         {
             if (_saveFile == null) return;
-            AchievementTracker.Instance.ModHelper.Storage.Save(_saveFile, _fileName);
+            Main.Instance.ModHelper.Storage.Save(_saveFile, _fileName);
         }
 
         public static void Reset()
@@ -64,13 +65,17 @@ namespace AchievementTracker
 
         public static bool HasAchievement(string uniqueID)
         {
-            if (_activeProfile == null && Load()) return true;
+            // If we couldn't load anything just say we have the achievement
+            if (_activeProfile == null && !Load()) return true;
+
             return _activeProfile.EarnedAchievements.Contains(uniqueID);
         }
 
         public static void EarnAchievement(string uniqueID)
         {
-            if (_activeProfile == null && Load()) return;
+            // If we couldn't load then don't bother
+            if (_activeProfile == null && !Load()) return;
+
             if (!HasAchievement(uniqueID))
             {
                 _activeProfile.EarnedAchievements.Add(uniqueID);
