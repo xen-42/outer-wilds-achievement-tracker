@@ -36,7 +36,4 @@
   <ItemGroup>
     <Content Include="AchievementTracker.csproj.user" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Menus\" />
-  </ItemGroup>
 </Project>

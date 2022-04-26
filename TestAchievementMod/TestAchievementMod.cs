@@ -31,7 +31,7 @@ namespace TestAchievementMod
             // Now add the translation stuff
             AchievementsAPI.RegisterTranslation("TEST.SOLAR_SYSTEM", TextTranslation.Language.ENGLISH, "Start", "You started the game.");
             AchievementsAPI.RegisterTranslation("TEST.EYE", TextTranslation.Language.ENGLISH, "End", "You ended the game.");
-            AchievementsAPI.RegisterTranslation("TEST.MARSHMALLOW", TextTranslation.Language.ENGLISH, "Marshmallow", "Better than NH.");
+            AchievementsAPI.RegisterTranslation("TEST.MARSHMALLOW", TextTranslation.Language.ENGLISH, "Marshmallow", "Roast a marshmallow. Better than NH.");
         }
 
         private void OnDestroy()

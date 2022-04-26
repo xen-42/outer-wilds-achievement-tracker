@@ -82,6 +82,20 @@ namespace AchievementTracker
             return _achievements;
         }
 
+        public static string GetCompletion(string modName)
+        {
+            var achievements = _achievements.Where(x => x.Value.ModName == modName);
+            var totalCount = achievements.Count();
+            var earnedCount = achievements.Where(x => AchievementData.HasAchievement(x.Value.UniqueID)).Count();
+
+            return $"{earnedCount} / {totalCount}";
+        }
+
+        public static string[] GetSupportedMods()
+        {
+            return _achievements.Select(x => x.Value.ModName).Distinct().ToArray();
+        }
+
         private static AchievementInfo GetStockAchievementInfo(Achievements.Type type)
         {
             string modName;
