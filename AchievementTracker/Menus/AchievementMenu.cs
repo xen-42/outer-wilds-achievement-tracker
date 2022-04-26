@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Logger = AchievementTracker.Util.Logger;
 
@@ -22,7 +23,33 @@ namespace AchievementTracker.Menus
 
         public static bool IsOpen { get; private set; }
 
-        public static GameObject Create()
+        public static void Open()
+        {
+            if (!_menuRoot) Create().transform.parent = GameObject.Find(SceneManager.GetActiveScene().name == "TitleScreen" ? "TitleMenu" : "PauseMenu").transform;
+
+            if (_modList == null) MakeModList();
+
+            IsOpen = true;
+            _menuRoot.SetActive(true);
+            _modList.SetActive(true);
+        }
+
+        public static void Close()
+        {
+            if (!_menuRoot) return;
+
+            GameObject.Destroy(_menuRoot);
+
+            IsOpen = false;
+            _menuRoot.SetActive(false);
+
+            // If we currently have an achievement list open, disappear it
+            if (_currentAchievementList) _currentAchievementList.SetActive(false);
+
+            HideAchievementsList();
+        }
+
+        private static GameObject Create()
         {
             if (!_background) _background = Resources.FindObjectsOfTypeAll<Sprite>().Where(x => x.name == "Background").FirstOrDefault();
             if (!_font) _font = Resources.FindObjectsOfTypeAll<Font>().Where(x => x.name == "Adobe - SerifGothicStd-ExtraBold").FirstOrDefault();
@@ -74,9 +101,9 @@ namespace AchievementTracker.Menus
             var backButton = GameObject.Instantiate(_buttonPrefab);
             backButton.name = "AchievementsBackButton";
             backButton.SetActive(true);
-            backButton.transform.parent = _menuRoot.transform;
+            backButton.GetComponent<RectTransform>().SetParent(_menuRoot.transform);
             backButton.transform.localPosition = new Vector3(0, -320, 0);
-            backButton.GetComponent<Button>().onClick.AddListener(() => Close());
+            backButton.GetComponent<Button>().onClick.AddListener(() => Back());
 
             var backTextObject = new GameObject();
             backTextObject.transform.parent = backButton.transform;
@@ -109,29 +136,10 @@ namespace AchievementTracker.Menus
                 ui.GetComponent<RectTransform>().SetParent(_modList.transform);
             }
         }
-
-        public static void Open()
+        private static void Back()
         {
-            if (!_menuRoot) return;
-
-            if (_modList == null) MakeModList();
-
-            IsOpen = true;
-            _menuRoot.SetActive(true);
-            _modList.SetActive(true);
-        }
-
-        public static void Close()
-        {
-            if (!_menuRoot) return;
-
-            IsOpen = false;
-            _menuRoot.SetActive(false);
-
-            // If we currently have an achievement list open, disappear it
-            if(_currentAchievementList) _currentAchievementList.SetActive(false);
-
-            HideAchievementsList();
+            if (_currentAchievementList) HideAchievementsList();
+            else Close();
         }
 
         private static void ShowAchievementsList(string modName)
@@ -145,29 +153,38 @@ namespace AchievementTracker.Menus
             _currentAchievementList.GetComponent<RectTransform>().SetParent(_menuRoot.transform);
             _currentAchievementList.transform.localPosition = new Vector3(-400, 240, 0);
 
-            var hiddenCount = 0;
-            foreach (var achievement in AchievementManager.GetAchievements().Where(x => x.Value.ModName == modName))
-            {
-                if (!AchievementData.HasAchievement(achievement.Value.UniqueID) && achievement.Value.Secret)
-                {
-                    hiddenCount++;
-                    continue;
-                }
-                else
-                {
-                    var uniqueID = achievement.Value.UniqueID;
-                    var name = achievement.Value.GetName();
-                    var description = achievement.Value.GetDescription();
-                    var locked = !AchievementData.HasAchievement(achievement.Value.UniqueID);
+            var modAchievements = AchievementManager.GetAchievements().Where(x => x.Value.ModName == modName);
+            var nonHiddenAchievements = modAchievements.Where(x => !x.Value.Secret);
+            var lockedAchievements = nonHiddenAchievements.Where(x => !AchievementData.HasAchievement(x.Value.UniqueID));
+            var unlockedAchievements = nonHiddenAchievements.Where(x => AchievementData.HasAchievement(x.Value.UniqueID));
 
-                    var ui = CreateAchievementUI(uniqueID, name, description, locked);
-                    ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
-                }
+            var hiddenCount = modAchievements.Count() - nonHiddenAchievements.Count();
+
+            foreach (var achievement in unlockedAchievements)
+            {
+                var uniqueID = achievement.Value.UniqueID;
+                var name = achievement.Value.GetName();
+                var description = achievement.Value.GetDescription();
+                var locked = !AchievementData.HasAchievement(achievement.Value.UniqueID);
+
+                var ui = CreateAchievementUI(uniqueID, name, description, locked);
+                ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
-            if(hiddenCount > 0)
+            foreach (var achievement in lockedAchievements)
             {
-                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievements are hidden.", "", false);
+                var uniqueID = achievement.Value.UniqueID;
+                var name = achievement.Value.GetName();
+                var description = achievement.Value.GetDescription();
+                var locked = !AchievementData.HasAchievement(achievement.Value.UniqueID);
+
+                var ui = CreateAchievementUI(uniqueID, name, description, locked);
+                ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
+            }
+
+            if (hiddenCount > 0)
+            {
+                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) are hidden.", "", false);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 

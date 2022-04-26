@@ -56,8 +56,6 @@ namespace AchievementTracker
 
             var achievementsButton = ModHelper.Menus.MainMenu.SwitchProfileButton.Duplicate("Achievements".ToUpper());
             achievementsButton.OnClick += OnClickAchievementsButton;
-
-            AchievementMenu.Create().transform.parent = GameObject.Find("TitleMenu").transform;
         }
 
         private void InitPauseMenu()
@@ -66,8 +64,6 @@ namespace AchievementTracker
 
             var achievementsButton = ModHelper.Menus.PauseMenu.OptionsButton.Duplicate("Achievements".ToUpper());
             achievementsButton.OnClick += OnClickAchievementsButton;
-
-            AchievementMenu.Create().transform.parent = GameObject.Find("PauseMenu").transform;
         }
 
         private void OnClickAchievementsButton()
