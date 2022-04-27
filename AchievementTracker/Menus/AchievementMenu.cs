@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Logger = AchievementTracker.Util.Logger;
@@ -20,6 +21,12 @@ namespace AchievementTracker.Menus
         private static GameObject _modList;
         private static GameObject _currentAchievementList;
         private static GameObject _buttonPrefab;
+
+        private static string _currentModName;
+        private static int _currentPage;
+        private static int _shownAchievements;
+
+        private const int PAGE_LIMIT = 8;
 
         public static bool IsOpen { get; private set; }
 
@@ -98,27 +105,55 @@ namespace AchievementTracker.Menus
             textObject.transform.localPosition = new Vector3(0, 320, 0);
             text.text = "ACHIEVEMENTS";
 
-            var backButton = GameObject.Instantiate(_buttonPrefab);
-            backButton.name = "AchievementsBackButton";
-            backButton.SetActive(true);
-            backButton.GetComponent<RectTransform>().SetParent(_menuRoot.transform);
-            backButton.transform.localPosition = new Vector3(0, -320, 0);
-            backButton.GetComponent<Button>().onClick.AddListener(() => Back());
-
-            var backTextObject = new GameObject();
-            backTextObject.transform.parent = backButton.transform;
-            backTextObject.transform.localPosition = new Vector3(0, -24, 0);
-            backTextObject.name = "BackText";
-            var backText = backTextObject.AddComponent<Text>();
-            backText.font = _font;
-            backText.alignment = TextAnchor.UpperCenter;
-            backText.horizontalOverflow = HorizontalWrapMode.Overflow;
-            backText.verticalOverflow = VerticalWrapMode.Overflow;
-            backText.fontSize = 40;
-            backText.color = new Color(1f, 0.5f, 0f, 1f);
-            backText.text = "BACK";
+            MakeButton("BACK", new Vector3(0, -320, 0), new Vector2(240, 64), _menuRoot.transform, Back);
+            MakeButton("<", new Vector3(-230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(-1));
+            MakeButton(">", new Vector3(230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(1));
 
             return _menuRoot;
+        }
+
+        private static void ChangePage(int shift)
+        {
+            var pageCount = (int) (Mathf.Floor(_shownAchievements / PAGE_LIMIT) + 1);
+            var newPage = 0;
+            if(pageCount > 0)
+            {
+                newPage = (_currentPage + shift + pageCount) % pageCount;
+            }
+
+            Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{pageCount}]");
+
+            ShowAchievementsList(_currentModName, newPage);
+        }
+
+        private static void MakeButton(string text, Vector3 position, Vector2 size, Transform parent, UnityAction call)
+        {
+            var button = GameObject.Instantiate(_buttonPrefab);
+            button.name = $"{text}_Button";
+            button.SetActive(true);
+            var rect = button.GetComponent<RectTransform>();
+            rect.SetParent(parent);
+            button.transform.localPosition = position;
+            button.GetComponent<Button>().onClick.AddListener(call);
+
+            var layout = button.GetComponent<LayoutElement>();
+            layout.minHeight = size.y;
+            layout.minWidth = size.x;
+
+            rect.sizeDelta = size;
+
+            var textObject = new GameObject();
+            textObject.transform.parent = button.transform;
+            textObject.transform.localPosition = new Vector3(0, -24, 0);
+            textObject.name = $"{text}_Text";
+            var textComponent = textObject.AddComponent<Text>();
+            textComponent.font = _font;
+            textComponent.alignment = TextAnchor.UpperCenter;
+            textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
+            textComponent.verticalOverflow = VerticalWrapMode.Overflow;
+            textComponent.fontSize = 40;
+            textComponent.color = new Color(1f, 0.5f, 0f, 1f);
+            textComponent.text = $"{text}";
         }
 
         private static void MakeModList()
@@ -142,9 +177,12 @@ namespace AchievementTracker.Menus
             else Close();
         }
 
-        private static void ShowAchievementsList(string modName)
+        private static void ShowAchievementsList(string modName, int page)
         {
             if (!_menuRoot) return;
+
+            _currentModName = modName;
+            _currentPage = page;
 
             HideAchievementsList();
 
@@ -156,12 +194,21 @@ namespace AchievementTracker.Menus
             var modAchievements = AchievementManager.GetAchievements().Where(x => x.Value.ModName == modName);
             var nonHiddenAchievements = modAchievements.Where(x => !x.Value.Secret);
             var lockedAchievements = nonHiddenAchievements.Where(x => !AchievementData.HasAchievement(x.Value.UniqueID));
-            var unlockedAchievements = nonHiddenAchievements.Where(x => AchievementData.HasAchievement(x.Value.UniqueID));
+            var unlockedAchievements = modAchievements.Where(x => AchievementData.HasAchievement(x.Value.UniqueID));
 
-            var hiddenCount = modAchievements.Count() - nonHiddenAchievements.Count();
+            var hiddenCount = modAchievements.Count() - lockedAchievements.Count() - unlockedAchievements.Count();
 
-            foreach (var achievement in unlockedAchievements)
+            _shownAchievements = lockedAchievements.Count() + unlockedAchievements.Count() + (hiddenCount > 0 ? 1 : 0);
+
+            var toSkip = page * PAGE_LIMIT;
+            var count = 0;
+
+            foreach (var achievement in unlockedAchievements.Concat(lockedAchievements))
             {
+                if (toSkip-- > 0) continue;
+
+                if (count++ > PAGE_LIMIT) continue;
+
                 var uniqueID = achievement.Value.UniqueID;
                 var name = achievement.Value.GetName();
                 var description = achievement.Value.GetDescription();
@@ -171,18 +218,7 @@ namespace AchievementTracker.Menus
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
-            foreach (var achievement in lockedAchievements)
-            {
-                var uniqueID = achievement.Value.UniqueID;
-                var name = achievement.Value.GetName();
-                var description = achievement.Value.GetDescription();
-                var locked = !AchievementData.HasAchievement(achievement.Value.UniqueID);
-
-                var ui = CreateAchievementUI(uniqueID, name, description, locked);
-                ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
-            }
-
-            if (hiddenCount > 0)
+            if (hiddenCount > 0 && count < 8)
             {
                 var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) are hidden.", "", false);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
@@ -213,11 +249,9 @@ namespace AchievementTracker.Menus
             var panelObject = GameObject.Instantiate(_buttonPrefab);
             panelObject.name = $"Panel_{modName}";
             panelObject.SetActive(true);
-            panelObject.GetComponent<Button>().onClick.AddListener(() => ShowAchievementsList(modName));
+            panelObject.GetComponent<Button>().onClick.AddListener(() => ShowAchievementsList(modName, 0));
             var layoutElement = panelObject.GetComponent<LayoutElement>();
             layoutElement.minHeight = 64;
-            layoutElement.minHeight = 64;
-            layoutElement.minWidth = 600;
             layoutElement.minWidth = 600;
 
             var imageObject = new GameObject($"Image_{modName}");
@@ -270,8 +304,6 @@ namespace AchievementTracker.Menus
             panelObject.AddComponent<CanvasRenderer>();
             var layoutElement = panelObject.AddComponent<LayoutElement>();
             layoutElement.minHeight = 64;
-            layoutElement.minHeight = 64;
-            layoutElement.minWidth = 600;
             layoutElement.minWidth = 600;
 
             var imageObject = new GameObject($"Image_{uniqueID}");
