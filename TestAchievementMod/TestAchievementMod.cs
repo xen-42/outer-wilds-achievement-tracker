@@ -49,6 +49,16 @@ namespace TestAchievementMod
 
             AchievementsAPI.RegisterTranslation("TEST.SIGNAL", TextTranslation.Language.ENGLISH, "Signals++", "Identify a signal.");
             AchievementsAPI.RegisterTranslation("TEST.DIALOGUE", TextTranslation.Language.ENGLISH, "Fait beau eh?", "Talk to somebody.");
+
+            // I'll do french too idk
+            AchievementsAPI.RegisterTranslation("TEST.SOLAR_SYSTEM", TextTranslation.Language.FRENCH, "Le début", "Tu as commencé le jeu.");
+            AchievementsAPI.RegisterTranslation("TEST.EYE", TextTranslation.Language.FRENCH, "La fin", "Tu as fini le jeu.");
+
+            AchievementsAPI.RegisterTranslation("TEST.MARSHMALLOW", TextTranslation.Language.FRENCH, "Guimauve", "Rôtir une guimauve. Mieux que NH. Cette blague ne marche pas en français.");
+            AchievementsAPI.RegisterTranslation("TEST.DIE", TextTranslation.Language.FRENCH, "Ow", "Mourez.");
+
+            AchievementsAPI.RegisterTranslation("TEST.SIGNAL", TextTranslation.Language.FRENCH, "Signals++", "Identifier un signal.");
+            AchievementsAPI.RegisterTranslation("TEST.DIALOGUE", TextTranslation.Language.FRENCH, "Nice day eh?", "Parler à quelqu'un.");
         }
 
         private void OnDestroy()
