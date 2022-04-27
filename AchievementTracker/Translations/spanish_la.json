@@ -1,0 +1,133 @@
+{
+    "TitleTranslation" : "Logros",
+    "AchievementTranslations": {
+        "TERRIBLE_FATE": {
+            "Name": "Te encontraste con un destino terrible.",
+            "Description": "Ya no hay vuelta atrás."
+        },
+        "WHATS_THIS_BUTTON": {
+            "Name": "Oye, para que sirve este boton?",
+            "Description": "Oprime el boton de eyección en la nave."
+        },
+        "ALPHA_PILOT": {
+            "Name": "Piloto estrella",
+            "Description": "Vuela de forma manual hasta la Estación Solar."
+        },
+        "YOU_TRIED": {
+            "Name": "Buen intento.",
+            "Description": "Trataste de escapar del sistema solar."
+        },
+        "BEGINNERS_LUCK": {
+            "Name": "Suerte de principiante",
+            "Description": "Llega al Ojo del universo en un solo bucle."
+        },
+        "SATELLITE": {
+            "Name": "Cuerpo rigido",
+            "Description": "Saca de órbita el satelite lumbreano."
+        },
+        "HEARTH_TO_MOON": {
+            "Name": "De la Lumbre a la Luna",
+            "Description": "Haz aterrizar el modelo de cohete en Rocaterra."
+        },
+        "DEEP_IMPACT": {
+            "Name": "El ojo del abismo",
+            "Description": "Ingresa en el océano de Abismo del Gigante con la velocidad necesaria para atravesar la corriente."
+        },
+        "HARMONIC_CONVERGENCE": {
+            "Name": "Convergencia harmónica",
+            "Description": "Consigue todos los instrumentos de los viajeros en simultáneo con tu señaloscopio."
+        },
+        "MUSEUM": {
+            "Name": "¡Eso debería estar en un museo!",
+            "Description": "Lleva un artefacto al museo."
+        },
+        "DIEHARD": {
+            "Name": "Duro de matar",
+            "Description": "Completa un bucle temporal (con vida) tras haber sufrido (y curado) más de 1000 puntos de daño."
+        },
+        "PCHOOOOOOO": {
+            "Name": "¡Fiuuuuuuuu!",
+            "Description": "Haz despegar tu nave con un cañon gravitatorio."
+        },
+        "GONE_IN_60_SECONDS": {
+            "Name": "60 segundos",
+            "Description": "Muere en menos de 60 s tras despertar."
+        },
+        "CARCINOGENS": {
+            "Name": "Mmm, cancerígenos...",
+            "Description": "Come 10 malvaviscos quemados."
+        },
+        "CUTTING_IT_CLOSE": {
+            "Name": "Propulsión improvisada",
+            "Description": "Usa el oxigeno de tu traje de manera imprudente."
+        },
+        "MICAS_WRATH": {
+            "Name": "La furia de Mica",
+            "Description": "Destruye el modelo de cohete haciéndolo volar hacia el Sol o Farol de la Hondonada."
+        },
+        "STUDIOUS": {
+            "Name": "Arqueología",
+            "Description": "Completa el registro de la nave."
+        },
+        "AROUND_THE_WORLD": {
+            "Name": "Alrededor del mundo en 90 segundos",
+            "Description": "Navega en balsa alrededor del Forastero en menos de 90 segundos."
+        },
+        "SILENCED_CARTOGRAPHER": {
+            "Name": "El cartografo silenciado",
+            "Description": "Deja el Satélite del Espacio Profundo inoperable."
+        },
+        "TUBULAR": {
+            "Name": "¡Tubular!",
+            "Description": "Surfea sobre la ola durante 15 segundos."
+        },
+        "EARLY_ADOPTER": {
+            "Name": "Adoptador temprano",
+            "Description": "Intenta usar el segundo artefacto. La curiosidad mató al gato, pero un bucle de vuelta lo trajo."
+        },
+        "GRATE_FILTER": {
+            "Name": "El gran filtro",
+            "Description": "Nada a traves de la reja de la presa. No todo el mundo lo consigue!"
+        },
+        "FLAT_HEARTHER": {
+            "Name": "Lumbreplanista",
+            "Description": "Mantente firme debajo de un ascensor moviendose."
+        },
+        "CELCIUS": {
+            "Name": "Celsius 232.78",
+            "Description": "Este conocimiento no se va a olvidar solo!"
+        },
+        "GHOSTS": {
+            "Name": "Fantasmas en la maquina",
+            "Description": "Llega a los 3 archivos prohibidos en un solo bucle sin que te pillen."
+        },
+        "SLEEP_WAKE_REPEAT": {
+            "Name": "Duerme. Despierta. Repite.",
+            "Description": "Despiertate de un sueño de 5 maneras diferentes en un solo bucle."
+        },
+        "SIMULATION": {
+            "Name": "Hypotesis de la simulacion",
+            "Description": "Intenta usar el artefacto en una hoguera normal. ¡Bueno, eso lo resuelve!"
+        },
+        "FIRE_ARROWS": {
+            "Name": "Flechas de fuego",
+            "Description": "Lanza el Miniexplorador al sol artificial del Forastero."
+        },
+        "ONE_NINE": {
+            "Name": "1 / 900",
+            "Description": "¡Oooh! ¡Me has pillado!"
+        },
+        "TAKEMEALIVE": {
+            "Name": "nunca me atraparas vivo!",
+            "Description": "Escapa de tus persecutores saltando hacia tu \"muerte\" En lugar de esquivarlos."
+        },
+        "OOFMYBONES": {
+            "Name": "Uf au, Mis huesos",
+            "Description": "Haz que un persecutor te ajuste la columna."
+        },
+        "FOUND_SIGNAL": {
+            "Name": "Señal encontrada",
+            "Description": "Eh... Lo has hecho supongo?"
+        }
+    }
+}
