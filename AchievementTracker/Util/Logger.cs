@@ -10,11 +10,15 @@ namespace AchievementTracker.Util
     {
         public static void Log(string msg)
         {
+            if (Main.Instance == null) return;
+
             Main.Instance.ModHelper.Console.WriteLine("[Achievements] Log: " + msg, OWML.Common.MessageType.Info);
         }
 
         public static void LogError(string msg)
         {
+            if (Main.Instance == null) return;
+
             Main.Instance.ModHelper.Console.WriteLine("[Achievements] Error: " + msg, OWML.Common.MessageType.Error);
         }
     }
