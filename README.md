@@ -62,3 +62,9 @@ The translations files should look like this:
 ```
 
 Where `AchievementTranslations` is a dictionary of key-value pairs where the keys are the `uniqueID` strings for the achievements, and each value has a `Name` and `Description` field.
+
+## Credits
+
+I wanna thank those who contributed translations:
+- Russian ([Tllya](https://github.com/Tllya))
+- Spanish ([LikeMauro](https://github.com/LikeMauro))
