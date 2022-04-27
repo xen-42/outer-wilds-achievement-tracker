@@ -1,73 +1,73 @@
 {
-    "TitleTranslation" : "Achievements",
+    "TitleTranslation" : "Достижения",
     "AchievementTranslations": {
         "TERRIBLE_FATE": {
-            "Name": "You've met a terrible fate.",
-            "Description": "No going back."
+            "Name": "День сурка",
+            "Description": "Назад пути нет."
         },
         "WHATS_THIS_BUTTON": {
-            "Name": "Hey, what's this button do?",
-            "Description": "Press the ejection button in the ship."
+            "Name": "А эта кнопка для чего?",
+            "Description": "Катапультироваться с корабля."
         },
         "ALPHA_PILOT": {
-            "Name": "Hotshot",
-            "Description": "Manually fly to the Sun Station."
+            "Name": "Высший пилотаж",
+            "Description": "Посадить корабль на солнечной станции вручную."
         },
         "YOU_TRIED": {
-            "Name": "It was worth a shot.",
-            "Description": "You tried to escape the solar system."
+            "Name": "Надежда умирает последней",
+            "Description": "Попробовать улететь из солнечной системы."
         },
         "BEGINNERS_LUCK": {
-            "Name": "Beginner's Luck",
-            "Description": "Reach the Eye of the Universe in one loop."
+            "Name": "Новичкам везёт",
+            "Description": "Пройти игру за одну временную петлю."
         },
         "SATELLITE": {
-            "Name": "Rigidbody",
-            "Description": "De-orbit the Hearthian satellite."
+            "Name": "Крепыш",
+            "Description": "Свести с орбиты камелянский спутник."
         },
         "HEARTH_TO_MOON": {
-            "Name": "From the Hearth to the Moon",
-            "Description": "Land the model rocket on Attlerock."
+            "Name": "Камелёк в иллюминаторе",
+            "Description": "Посадить модель ракеты на Террикон."
         },
         "DEEP_IMPACT": {
-            "Name": "Deep Impact",
-            "Description": "Enter Giant's Deep ocean fast enough to break through the current."
+            "Name": "А теперь бомбочкой",
+            "Description": "Войти в океан Пучины Гиганта настолько быстро, чтобы преодолеть течение."
         },
         "HARMONIC_CONVERGENCE": {
-            "Name": "Harmonic Convergence",
-            "Description": "Pick up all traveler instruments simultaneously with your signalscope."
+            "Name": "Орекстр",
+            "Description": "Зафиксировать сигналоскопом все инструменты путешественников одновременно."
         },
         "MUSEUM": {
-            "Name": "It belongs in a museum!",
-            "Description": "Bring an artifact back to the museum."
+            "Name": "Музейный экспонат",
+            "Description": "Вернуть артефакт в музей."
         },
         "DIEHARD": {
-            "Name": "Die Hard",
-            "Description": "End a time loop (Alive) after having taken (and healed) over 1000 damage."
+            "Name": "Крепкий орешек",
+            "Description": "Выйти из временной петли, получив в сумме не менее 1000 единиц урона и не погибнув."
         },
         "PCHOOOOOOO": {
-            "Name": "Pchooooooo!",
-            "Description": "Launch your ship with a gravity cannon."
+            "Name": "Вжух",
+            "Description": "Выстрелить своим кораблём из гравитационной пушки."
         },
         "GONE_IN_60_SECONDS": {
-            "Name": "Gone In 60 Seconds",
-            "Description": "Die within 60 seconds of waking up."
+            "Name": "Минутное дело",
+            "Description": "Погибнуть в течение 60 секунд после пробуждения."
         },
         "CARCINOGENS": {
-            "Name": "Mmmm, Carcinogens...",
-            "Description": "Eat 10 burnt marshmallows."
+            "Name": "М-м-м, канцерогены",
+            "Description": "Съесть 10 поджаренных маршмеллоу."
         },
         "CUTTING_IT_CLOSE": {
-            "Name": "Cutting it Close",
-            "Description": "Use your suit's oxygen in an ill-advised manner."
+            "Name": "Реактивная тяга",
+            "Description": "Использовать кислород из баллона скафандра не по назначению."
         },
         "MICAS_WRATH": {
-            "Name": "Mica's Wrath",
-            "Description": "Destroy the Model Rocket by flying into the sun or Hollow's Lantern."
+            "Name": "Слюда запомнит это",
+            "Description": "Уничтожить модель ракеты, отправив её на солнце или Пустотную Лампу."
         },
         "STUDIOUS": {
-            "Name": "Archaeologist",
-            "Description": "Complete the ship log."
+            "Name": "Доктор космических наук",
+            "Description": "Заполнить судовой журнал."
         },
         "AROUND_THE_WORLD": {
             "Name": "Around the world in 90 seconds",
