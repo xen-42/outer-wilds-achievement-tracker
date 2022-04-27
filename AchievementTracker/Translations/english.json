@@ -126,7 +126,7 @@
             "Description": "Have your spine adjusted by a pursuer."
         },
         "FOUND_SIGNAL": {
-            "Name": "Wait What",
+            "Name": "Found Signal",
             "Description": "Uh... You did it I guess?"
         }
     }
