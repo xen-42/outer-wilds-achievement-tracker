@@ -33,7 +33,7 @@ namespace AchievementTracker
 
             ModHelper.Menus.MainMenu.OnInit += InitTitleMenu;
             ModHelper.Menus.PauseMenu.OnInit += InitPauseMenu;
-            ModHelper.Menus.PauseMenu.OnClosed += AchievementMenu.Close;
+            ModHelper.Menus.PauseMenu.OnClosed += () => AchievementMenu.Close(false);
         }
 
         public void OnDestroy()
@@ -41,7 +41,7 @@ namespace AchievementTracker
             SceneManager.sceneLoaded -= OnSceneLoaded;
             ModHelper.Menus.MainMenu.OnInit -= InitTitleMenu;
             ModHelper.Menus.PauseMenu.OnInit -= InitPauseMenu;
-            ModHelper.Menus.PauseMenu.OnClosed -= AchievementMenu.Close;
+            ModHelper.Menus.PauseMenu.OnClosed -= () => AchievementMenu.Close(false);
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

@@ -98,9 +98,24 @@ namespace AchievementTracker
             return $"{earnedCount} / {totalCount}";
         }
 
-        public static string[] GetSupportedMods()
+        public static Tuple<ModBehaviour, string>[] GetSupportedMods()
         {
-            return _achievements.Select(x => x.Value.ModName).Distinct().ToArray();
+            // Wow this sucks
+            var mods = _achievements.Select(x => x.Value.Mod).Distinct().ToArray();
+            var modsAndNames = new List<Tuple<ModBehaviour, string>>();
+            foreach(var mod in mods)
+            {
+                if(mod == Main.Instance)
+                {
+                    modsAndNames.Add(new Tuple<ModBehaviour, string>(mod, "Outer Wilds"));
+                    modsAndNames.Add(new Tuple<ModBehaviour, string>(mod, "Echoes of the Eye"));
+                }
+                else
+                {
+                    modsAndNames.Add(new Tuple<ModBehaviour, string>(mod, mod.ModHelper.Manifest.Name));
+                }
+            }
+            return modsAndNames.ToArray();
         }
 
         private static AchievementInfo GetStockAchievementInfo(Achievements.Type type)

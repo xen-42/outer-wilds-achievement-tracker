@@ -29,7 +29,10 @@ namespace AchievementTracker.Menus
         private static int _shownMods;
         private static bool _onModList;
 
-        private const int PAGE_LIMIT = 8;
+        private static GameObject _pauseMenuUI;
+
+        private const int PAGE_LIMIT = 7;
+        private static readonly Color _textColor = new Color(0.9686f, 0.498f, 0.2078f, 1f);
 
         public static bool IsOpen { get; private set; }
 
@@ -42,9 +45,16 @@ namespace AchievementTracker.Menus
             IsOpen = true;
             _menuRoot.SetActive(true);
             _modList.SetActive(true);
+
+            // If in the game hide the pause menu
+            if (SceneManager.GetActiveScene().name != "TitleScreen")
+            {
+                _pauseMenuUI = GameObject.Find("PauseMenu/PauseMenuCanvas/PauseMenuBlock/PauseMenuItems").gameObject;
+                _pauseMenuUI.SetActive(false);
+            }
         }
 
-        public static void Close()
+        public static void Close(bool reopenPauseMenu = true)
         {
             if (!_menuRoot) return;
 
@@ -57,6 +67,9 @@ namespace AchievementTracker.Menus
             if (_currentAchievementList) _currentAchievementList.SetActive(false);
 
             HideAchievementsList();
+
+            // If in the game show the pause menu
+            if (reopenPauseMenu && _pauseMenuUI) _pauseMenuUI.SetActive(true);
         }
 
         private static GameObject Create()
@@ -68,10 +81,10 @@ namespace AchievementTracker.Menus
                 _buttonPrefab = GameObject.Instantiate(GameObject.Find("TitleMenu/OptionsCanvas/OptionsMenu-Panel/OptionsButtons/UIElement-SaveAndExit"));
                 _buttonPrefab.GetComponent<ButtonWithHotkeyImageElement>().enabled = false;
                 _buttonPrefab.GetComponent<SubmitActionCloseMenu>().enabled = false;
-                _buttonPrefab.GetComponent<UIStyleApplier>().enabled = false;
+                //_buttonPrefab.GetComponent<UIStyleApplier>().enabled = false;
                 _buttonPrefab.transform.Find("ForegroundLayoutGroup").gameObject.SetActive(false);
                 _buttonPrefab.transform.Find("SelectionArrows").gameObject.SetActive(false);
-                _buttonPrefab.transform.Find("BackingImage").gameObject.SetActive(false);
+                //_buttonPrefab.transform.Find("BackingImage").GetComponent<Image>().enabled = false;
                 _buttonPrefab.SetActive(false);
                 GameObject.DontDestroyOnLoad(_buttonPrefab);
             }
@@ -89,7 +102,7 @@ namespace AchievementTracker.Menus
             var bgImage = _menuRoot.AddComponent<Image>();
             bgImage.sprite = _background;
             bgImage.type = Image.Type.Sliced;
-            bgImage.color = new Color(0.3f, 0.3f, 0.3f, 0.5f);
+            bgImage.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
 
             var textObject = new GameObject();
             textObject.transform.parent = _menuRoot.transform;
@@ -104,7 +117,7 @@ namespace AchievementTracker.Menus
             text.horizontalOverflow = HorizontalWrapMode.Overflow;
             text.verticalOverflow = VerticalWrapMode.Overflow;
             text.fontSize = 40;
-            text.color = new Color(1f, 0.5f, 0f, 1f);
+            text.color = _textColor;
             textObject.transform.localPosition = new Vector3(0, 320, 0);
             text.text = "ACHIEVEMENTS";
 
@@ -171,8 +184,10 @@ namespace AchievementTracker.Menus
             textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
             textComponent.verticalOverflow = VerticalWrapMode.Overflow;
             textComponent.fontSize = 40;
-            textComponent.color = new Color(1f, 0.5f, 0f, 1f);
+            textComponent.color = _textColor;
             textComponent.text = $"{text}";
+
+            button.GetComponent<UIStyleApplier>()._foregroundGraphics = new Text[] { textComponent };
         }
 
         private static void MakeModList(int page)
@@ -195,12 +210,12 @@ namespace AchievementTracker.Menus
 
             var supportedMods = AchievementManager.GetSupportedMods();
             _shownMods = supportedMods.Count();
-            foreach (var modName in supportedMods)
+            foreach (var mod in supportedMods)
             {
                 if (toSkip-- > 0) continue;
                 if (count++ >= PAGE_LIMIT) continue;
 
-                var ui = CreateModUI(modName);
+                var ui = CreateModUI(mod.Item2, mod.Item1);
                 ui.GetComponent<RectTransform>().SetParent(_modList.transform);
             }
         }
@@ -255,7 +270,7 @@ namespace AchievementTracker.Menus
 
             if (hiddenCount > 0 && count < PAGE_LIMIT)
             {
-                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) are hidden.", "", false, Main.Instance);
+                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) hidden.", "", false, Main.Instance);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
@@ -272,13 +287,13 @@ namespace AchievementTracker.Menus
             _modList.SetActive(true);
         }
 
-        private static GameObject CreateModUI(string modName)
+        private static GameObject CreateModUI(string modName, ModBehaviour mod)
         {
             Texture2D texture = null;
 
             try
             {
-                texture = ImageUtilities.GetTexture(Main.Instance, $"Icons/{modName}.jpg");
+                texture = ImageUtilities.GetTexture(mod, $"Icons/{modName}.jpg");
             }
             catch { }
 
@@ -287,7 +302,7 @@ namespace AchievementTracker.Menus
             panelObject.SetActive(true);
             panelObject.GetComponent<Button>().onClick.AddListener(() => ShowAchievementsList(modName, 0));
             var layoutElement = panelObject.GetComponent<LayoutElement>();
-            layoutElement.minHeight = 64;
+            layoutElement.minHeight = 80;
             layoutElement.minWidth = 600;
 
             var imageObject = new GameObject($"Image_{modName}");
@@ -301,7 +316,7 @@ namespace AchievementTracker.Menus
                 var imageText = imageObject.AddComponent<Text>();
                 imageText.fontSize = 64;
                 imageText.font = _font;
-                imageText.color = new Color(1f, 0.5f, 0f);
+                imageText.color = _textColor;
                 imageText.text = "?";
                 imageText.horizontalOverflow = HorizontalWrapMode.Overflow;
                 imageText.verticalOverflow = VerticalWrapMode.Overflow;
@@ -317,10 +332,12 @@ namespace AchievementTracker.Menus
             var text = textObject.AddComponent<Text>();
             text.font = _font;
             text.text = $"{modName}\n{AchievementManager.GetCompletion(modName)}";
-            text.alignment = TextAnchor.MiddleLeft;
+            text.alignment = TextAnchor.MiddleCenter;
             text.horizontalOverflow = HorizontalWrapMode.Overflow;
             textObject.GetComponent<RectTransform>().SetParent(panelObject.transform);
             textObject.transform.localPosition = Vector3.zero;
+
+            panelObject.GetComponent<UIStyleApplier>()._foregroundGraphics = new Text[] { text };
 
             return panelObject;
         }
@@ -339,7 +356,7 @@ namespace AchievementTracker.Menus
             var panelObject = new GameObject($"Panel_{uniqueID}");
             panelObject.AddComponent<CanvasRenderer>();
             var layoutElement = panelObject.AddComponent<LayoutElement>();
-            layoutElement.minHeight = 64;
+            layoutElement.minHeight = 80;
             layoutElement.minWidth = 600;
 
             var imageObject = new GameObject($"Image_{uniqueID}");
@@ -353,7 +370,7 @@ namespace AchievementTracker.Menus
                 var imageText = imageObject.AddComponent<Text>();
                 imageText.fontSize = 64;
                 imageText.font = _font;
-                imageText.color = locked ? new Color(0.59f, 0.59f, 0.59f) : new Color(1f, 0.5f, 0f);
+                imageText.color = locked ? new Color(0.59f, 0.59f, 0.59f) : _textColor;
                 imageText.text = "?";
                 imageText.horizontalOverflow = HorizontalWrapMode.Overflow;
                 imageText.verticalOverflow = VerticalWrapMode.Overflow;
