@@ -1,0 +1,133 @@
+{
+  "TitleTranslation": "Succès",
+  "AchievementTranslations": {
+    "TERRIBLE_FATE": {
+      "Name": "Ta terrible destinée.",
+      "Description": "Pas de retour."
+    },
+    "WHATS_THIS_BUTTON": {
+      "Name": "Ça fait quoi si j'appuie là ?",
+      "Description": "Appuyez sur le bouton d'éjection dans le vaisseau."
+    },
+    "ALPHA_PILOT": {
+      "Name": "As",
+      "Description": "Volez manuellement vers la Sun Station."
+    },
+    "YOU_TRIED": {
+      "Name": "Ça valait le coup d'essayer.",
+      "Description": "Vous avez essayé de vous échapper du système solaire."
+    },
+    "BEGINNERS_LUCK": {
+      "Name": "Chance du débutant",
+      "Description": "Aller à l'oeil de l'univers en une seule boucle."
+    },
+    "SATELLITE": {
+      "Name": "Rigidbody",
+      "Description": "Désorbiter le satellite hearthian."
+    },
+    "HEARTH_TO_MOON": {
+      "Name": "D'Âtrebois à la Lune",
+      "Description": "Posez la micro fusée sur la Rocaille."
+    },
+    "DEEP_IMPACT": {
+      "Name": "Grand plongeon",
+      "Description": "Entrer dans l'océan assez vite pour briser le courant."
+    },
+    "HARMONIC_CONVERGENCE": {
+      "Name": "Convergence harmonique",
+      "Description": "Captez tous les instruments de voyageurs en même temps avec l'onduloscope."
+    },
+    "MUSEUM": {
+      "Name": "Sa place est dans un musée !",
+      "Description": "Ramenez un artefact au musée."
+    },
+    "DIEHARD": {
+      "Name": "Coriace",
+      "Description": "Terminez une boucle en vie après avoir subi (et récupéré) plus de 1 000 dégâts."
+    },
+    "PCHOOOOOOO": {
+      "Name": "Pffffuittt!",
+      "Description": "Lancez le vaisseau au canon gravitationnel."
+    },
+    "GONE_IN_60_SECONDS": {
+      "Name": "60 secondes chrono",
+      "Description": "Mourez dans les 60 secondes suivant votre réveil."
+    },
+    "CARCINOGENS": {
+      "Name": "Miam, des cancérogènes!",
+      "Description": "Mangez 10 guimauves brûlées."
+    },
+    "CUTTING_IT_CLOSE": {
+      "Name": "Un peu juste",
+      "Description": "Utilisez les réserves d'oxygène de votre combi de façon non conseillée."
+    },
+    "MICAS_WRATH": {
+      "Name": "Pauvre Mica",
+      "Description": "Détruisez le micro fusée en volant vers le soleil ou Hollow's Lantern'."
+    },
+    "STUDIOUS": {
+      "Name": "Archéologue",
+      "Description": "Remplissez le journal de bord."
+    },
+    "AROUND_THE_WORLD": {
+      "Name": "Le tour du monde en 90 secondes",
+      "Description": "Surfez autour de l'étranger en moins de 90 secondes."
+    },
+    "SILENCED_CARTOGRAPHER": {
+      "Name": "Le cartographe muet",
+      "Description": "Rendre le Deep Space Satellite inutilisable."
+    },
+    "TUBULAR": {
+      "Name": "Quel tube !",
+      "Description": "Surfez sur le visage de la vague pendant au moins 15 secondes sur un radeau."
+    },
+    "EARLY_ADOPTER": {
+      "Name": "Pionnier",
+      "Description": "Essayez d'utiliser le deuxième prototype d'artefact."
+    },
+    "GRATE_FILTER": {
+      "Name": "Le grand filtre",
+      "Description": "Nagez à travers la grille du barrage."
+    },
+    "FLAT_HEARTHER": {
+      "Name": "Platiste terre à terre",
+      "Description": "Tenez-vous sous un ascenseur en mouvement."
+    },
+    "CELCIUS": {
+      "Name": "232,78 degrés Celsius",
+      "Description": "Cette connaissance ne va pas s'interdire !"
+    },
+    "GHOSTS": {
+      "Name": "Fantômes dans la machine",
+      "Description": "Atteignez les 3 archives interdites en une seule boucle sans être attrapé."
+    },
+    "SLEEP_WAKE_REPEAT": {
+      "Name": "Dormez. Réveillez-vous. Recommencez.",
+      "Description": "Soyez réveillé d'un rêve de 5 manières différentes en une seule boucle."
+    },
+    "SIMULATION": {
+      "Name": "Hypothèse de simulation",
+      "Description": "Essayez d'utiliser l'artefact sur un feu de camp normal. Eh bien, cela règle cela!"
+    },
+    "FIRE_ARROWS": {
+      "Name": "Flèches enflammées",
+      "Description": "Tirez le petit scout sur le soleil artificiel dans l'Étranger."
+    },
+    "ONE_NINE": {
+      "Name": "1 / 900",
+      "Description": "Yahaha ! Vous m'avez trouvé!"
+    },
+    "TAKEMEALIVE": {
+      "Name": "Vous ne m'aurez jamais en vie !",
+      "Description": "Échappez à vos poursuivants en sautant vers votre \"mort\" au lieu de les esquiver."
+    },
+    "OOFMYBONES": {
+      "Name": "Aïe ouille, mes os",
+      "Description": "Faites ajuster votre colonne vertébrale par un poursuivant."
+    },
+    "FOUND_SIGNAL": {
+      "Name": "Signal trouvé",
+      "Description": "Euh... Tu l'as fait je suppose ?"
+    }
+  }
+}
