@@ -11,7 +11,7 @@ namespace AchievementTracker.Util
     {
         public void RegisterAchievement(string uniqueID, bool secret, ModBehaviour mod)
         {
-            AchievementManager.RegisterAchievement(uniqueID, secret, mod.ModHelper.Manifest.Name);
+            AchievementManager.RegisterAchievement(uniqueID, secret, mod);
         }
 
         public void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description)

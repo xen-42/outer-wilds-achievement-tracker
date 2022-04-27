@@ -1,5 +1,6 @@
 ﻿using AchievementTracker.External;
 using AchievementTracker.Utit;
+using OWML.ModHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace AchievementTracker.Menus
         private static string _currentModName;
         private static int _currentPage;
         private static int _shownAchievements;
+        private static int _shownMods;
+        private static bool _onModList;
 
         private const int PAGE_LIMIT = 8;
 
@@ -34,7 +37,7 @@ namespace AchievementTracker.Menus
         {
             if (!_menuRoot) Create().transform.parent = GameObject.Find(SceneManager.GetActiveScene().name == "TitleScreen" ? "TitleMenu" : "PauseMenu").transform;
 
-            if (_modList == null) MakeModList();
+            if (_modList == null) MakeModList(0);
 
             IsOpen = true;
             _menuRoot.SetActive(true);
@@ -114,16 +117,32 @@ namespace AchievementTracker.Menus
 
         private static void ChangePage(int shift)
         {
-            var pageCount = (int) (Mathf.Floor(_shownAchievements / PAGE_LIMIT) + 1);
-            var newPage = 0;
-            if(pageCount > 0)
+            if(_onModList)
             {
-                newPage = (_currentPage + shift + pageCount) % pageCount;
+                var pageCount = (int)(Mathf.Floor((_shownMods - 1) / PAGE_LIMIT) + 1);
+                var newPage = 0;
+                if (pageCount > 0)
+                {
+                    newPage = (_currentPage + shift + pageCount) % pageCount;
+                }
+
+                Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{pageCount}]");
+
+                MakeModList(newPage);
             }
+            else
+            {
+                var pageCount = (int)(Mathf.Floor((_shownAchievements - 1) / PAGE_LIMIT) + 1);
+                var newPage = 0;
+                if (pageCount > 0)
+                {
+                    newPage = (_currentPage + shift + pageCount) % pageCount;
+                }
 
-            Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{pageCount}]");
+                Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{pageCount}]");
 
-            ShowAchievementsList(_currentModName, newPage);
+                ShowAchievementsList(_currentModName, newPage);
+            }
         }
 
         private static void MakeButton(string text, Vector3 position, Vector2 size, Transform parent, UnityAction call)
@@ -156,8 +175,14 @@ namespace AchievementTracker.Menus
             textComponent.text = $"{text}";
         }
 
-        private static void MakeModList()
+        private static void MakeModList(int page)
         {
+            if (_modList) GameObject.Destroy(_modList);
+            
+            _onModList = true;
+
+            _currentPage = page;
+
             // Make list of mods
             _modList = new GameObject("AchievementsModList");
             var modListRect = _modList.AddComponent<RectTransform>();
@@ -165,12 +190,21 @@ namespace AchievementTracker.Menus
             modListRect.transform.localPosition = new Vector3(-250, 240, 0);
             _modList.AddComponent<VerticalLayoutGroup>();
 
-            foreach (var modName in AchievementManager.GetSupportedMods())
+            var toSkip = page * PAGE_LIMIT;
+            var count = 0;
+
+            var supportedMods = AchievementManager.GetSupportedMods();
+            _shownMods = supportedMods.Count();
+            foreach (var modName in supportedMods)
             {
+                if (toSkip-- > 0) continue;
+                if (count++ >= PAGE_LIMIT) continue;
+
                 var ui = CreateModUI(modName);
                 ui.GetComponent<RectTransform>().SetParent(_modList.transform);
             }
         }
+
         private static void Back()
         {
             if (_currentAchievementList) HideAchievementsList();
@@ -185,6 +219,7 @@ namespace AchievementTracker.Menus
             _currentPage = page;
 
             HideAchievementsList();
+            _onModList = false;
 
             _currentAchievementList = new GameObject("AchievementsList");
             _currentAchievementList.AddComponent<VerticalLayoutGroup>();
@@ -206,21 +241,21 @@ namespace AchievementTracker.Menus
             foreach (var achievement in unlockedAchievements.Concat(lockedAchievements))
             {
                 if (toSkip-- > 0) continue;
-
                 if (count++ >= PAGE_LIMIT) continue;
 
                 var uniqueID = achievement.Value.UniqueID;
                 var name = achievement.Value.GetName();
                 var description = achievement.Value.GetDescription();
                 var locked = !AchievementData.HasAchievement(achievement.Value.UniqueID);
+                var mod = achievement.Value.Mod;
 
-                var ui = CreateAchievementUI(uniqueID, name, description, locked);
+                var ui = CreateAchievementUI(uniqueID, name, description, locked, mod);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
-            if (hiddenCount > 0 && count < 8)
+            if (hiddenCount > 0 && count < PAGE_LIMIT)
             {
-                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) are hidden.", "", false);
+                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) are hidden.", "", false, Main.Instance);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
@@ -233,6 +268,7 @@ namespace AchievementTracker.Menus
             GameObject.Destroy(_currentAchievementList);
             _currentAchievementList = null;
 
+            _onModList = true;
             _modList.SetActive(true);
         }
 
@@ -289,13 +325,13 @@ namespace AchievementTracker.Menus
             return panelObject;
         }
 
-        private static GameObject CreateAchievementUI(string uniqueID, string name, string description, bool locked)
+        private static GameObject CreateAchievementUI(string uniqueID, string name, string description, bool locked, ModBehaviour mod)
         {
             Texture2D texture = null;
 
             try
             {
-                texture = ImageUtilities.GetTexture(Main.Instance, $"Icons/{uniqueID}.jpg");
+                texture = ImageUtilities.GetTexture(mod, $"Icons/{uniqueID}.jpg");
                 if (locked) texture = ImageUtilities.GreyscaleImage(texture);
             }
             catch { }

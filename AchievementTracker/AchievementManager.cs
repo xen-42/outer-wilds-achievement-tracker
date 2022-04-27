@@ -26,7 +26,7 @@ namespace AchievementTracker
 
                 var info = GetStockAchievementInfo(type);
 
-                RegisterAchievement(type.ToString(), info.Secret, info.ModName);
+                RegisterStockAchievement(type.ToString(), info.Secret, info.ModName);
             }
 
             // Register their translations
@@ -54,7 +54,14 @@ namespace AchievementTracker
             }
         }
 
-        public static void RegisterAchievement(string uniqueID, bool secret, string modName)
+        public static void RegisterAchievement(string uniqueID, bool secret, ModBehaviour mod)
+        {
+            if (_achievements.ContainsKey(uniqueID)) return;
+
+            _achievements.Add(uniqueID, new AchievementInfo(uniqueID, mod, secret));
+        }
+
+        public static void RegisterStockAchievement(string uniqueID, bool secret, string modName)
         {
             if (_achievements.ContainsKey(uniqueID)) return;
 
@@ -237,17 +244,29 @@ namespace AchievementTracker
 
         public class AchievementInfo
         {
-            private Dictionary<TextTranslation.Language, string> _nameDict;
-            private Dictionary<TextTranslation.Language, string> _descriptionDict;
+            private readonly Dictionary<TextTranslation.Language, string> _nameDict;
+            private readonly Dictionary<TextTranslation.Language, string> _descriptionDict;
+            public ModBehaviour Mod { get; private set; }
             public string UniqueID { get; private set; }
             public string ModName { get; private set; }
             public bool Secret { get; private set; }
+            public AchievementInfo(string uniqueID, ModBehaviour mod, bool secret)
+            {
+                _nameDict = new Dictionary<TextTranslation.Language, string>();
+                _descriptionDict = new Dictionary<TextTranslation.Language, string>();
+                Mod = mod;
+                ModName = Mod.ModHelper.Manifest.Name;
+                UniqueID = uniqueID;
+                Secret = secret;
+            }
+
             public AchievementInfo(string uniqueID, string modName, bool secret)
             {
                 _nameDict = new Dictionary<TextTranslation.Language, string>();
                 _descriptionDict = new Dictionary<TextTranslation.Language, string>();
-                UniqueID = uniqueID;
+                Mod = Main.Instance;
                 ModName = modName;
+                UniqueID = uniqueID;
                 Secret = secret;
             }
 
@@ -261,8 +280,7 @@ namespace AchievementTracker
             {
                 var language = TextTranslation.Get().m_language;
 
-                string name;
-                if (_nameDict.TryGetValue(language, out name))
+                if (_nameDict.TryGetValue(language, out string name))
                 {
                     return name;
                 }
@@ -280,8 +298,7 @@ namespace AchievementTracker
             {
                 var language = TextTranslation.Get().m_language;
 
-                string description;
-                if (_descriptionDict.TryGetValue(language, out description))
+                if (_descriptionDict.TryGetValue(language, out string description))
                 {
                     return description;
                 }
