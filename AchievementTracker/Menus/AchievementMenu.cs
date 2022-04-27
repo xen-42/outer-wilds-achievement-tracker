@@ -207,7 +207,7 @@ namespace AchievementTracker.Menus
             {
                 if (toSkip-- > 0) continue;
 
-                if (count++ > PAGE_LIMIT) continue;
+                if (count++ >= PAGE_LIMIT) continue;
 
                 var uniqueID = achievement.Value.UniqueID;
                 var name = achievement.Value.GetName();
