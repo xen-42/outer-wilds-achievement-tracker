@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using UnityEngine;
+using Logger = AchievementTracker.Util.Logger;
 
 namespace AchievementTracker.Utit
 {
@@ -9,12 +10,33 @@ namespace AchievementTracker.Utit
     {
         public static Texture2D GetTexture(IModBehaviour mod, string filename)
         {
-            // Copied from OWML but without the print statement lol
-            var path = mod.ModHelper.Manifest.ModFolderPath + filename;
-            var data = File.ReadAllBytes(path);
-            var texture = new Texture2D(2, 2);
-            texture.LoadImage(data);
-            return texture;
+            try
+            {
+                var path = mod.ModHelper.Manifest.ModFolderPath + filename;
+
+                byte[] data = null;
+                if(File.Exists(path + ".png"))
+                {
+                    data = File.ReadAllBytes(path + ".png");
+                }
+                else if (File.Exists(path + ".jpg"))
+                {
+                    data = File.ReadAllBytes(path + ".jpg");
+                }
+                else
+                {
+                    Logger.Log($"Invalid file type for {filename}. Must be jpg or png.");
+                    return null;
+                }
+
+                var texture = new Texture2D(2, 2);
+                texture.LoadImage(data);
+                return texture;
+            }
+            catch(Exception)
+            {
+                return null;
+            }
         }
 
         public static Sprite MakeSprite(Texture2D texture)

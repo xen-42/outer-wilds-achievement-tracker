@@ -294,13 +294,7 @@ namespace AchievementTracker.Menus
 
         private static GameObject CreateModUI(string modName, ModBehaviour mod)
         {
-            Texture2D texture = null;
-
-            try
-            {
-                texture = ImageUtilities.GetTexture(mod, $"Icons/{modName}.jpg");
-            }
-            catch { }
+            var texture = ImageUtilities.GetTexture(mod, $"Icons/{modName}");
 
             var panelObject = GameObject.Instantiate(_buttonPrefab);
             panelObject.name = $"Panel_{modName}";
@@ -352,14 +346,8 @@ namespace AchievementTracker.Menus
             // Since we call this from the popup class now just make sure the font isnt null
             if (!_font) _font = Resources.FindObjectsOfTypeAll<Font>().Where(x => x.name == "Adobe - SerifGothicStd-ExtraBold").FirstOrDefault();
 
-            Texture2D texture = null;
-
-            try
-            {
-                texture = ImageUtilities.GetTexture(mod, $"Icons/{uniqueID}.jpg");
-                if (locked) texture = ImageUtilities.GreyscaleImage(texture);
-            }
-            catch { }
+            var texture = ImageUtilities.GetTexture(mod, $"Icons/{uniqueID}");
+            if (locked && texture) texture = ImageUtilities.GreyscaleImage(texture);
 
             var panelObject = new GameObject($"Panel_{uniqueID}");
             panelObject.AddComponent<CanvasRenderer>();
