@@ -34,11 +34,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Menus\**" />
-    <EmbeddedResource Remove="Menus\**" />
-    <None Remove="Menus\**" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="TestAchievementMod.csproj.user" />
   </ItemGroup>
 </Project>
