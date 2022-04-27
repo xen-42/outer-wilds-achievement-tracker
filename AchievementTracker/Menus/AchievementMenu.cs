@@ -123,9 +123,10 @@ namespace AchievementTracker.Menus
             text.fontSize = 40;
             text.color = _textColor;
             textObject.transform.localPosition = new Vector3(0, 320, 0);
-            text.text = "ACHIEVEMENTS";
+            text.text = TranslationData.GetTitle().ToUpper();
 
-            MakeButton("BACK", new Vector3(0, -320, 0), new Vector2(240, 64), _menuRoot.transform, Back);
+            var back = UITextLibrary.GetString(UITextType.MenuBack).ToUpper();
+            MakeButton(back, new Vector3(0, -320, 0), new Vector2(240, 64), _menuRoot.transform, Back);
             MakeButton("<", new Vector3(-230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(-1));
             MakeButton(">", new Vector3(230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(1));
 
@@ -399,5 +400,7 @@ namespace AchievementTracker.Menus
 
             return panelObject;
         }
+
+
     }
 }

@@ -66,7 +66,9 @@ namespace AchievementTracker
                 {
                     try
                     {
-                        var translationTable = new TranslationData($"{folder}{filename}").AchievementTranslations;
+                        var data = new TranslationData($"{folder}{filename}", lang);
+
+                        var translationTable = data.AchievementTranslations;
                         foreach (var uniqueID in translationTable.Keys)
                         {
                             var name = translationTable[uniqueID].Name;

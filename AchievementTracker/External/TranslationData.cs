@@ -13,7 +13,9 @@ namespace AchievementTracker.External
         public string TitleTranslation { get; set; }
         public Dictionary<string, AchievementTranslation> AchievementTranslations { get; set; }
 
-        public TranslationData(string fileName)
+        public static Dictionary<TextTranslation.Language, string> achievementTitleDict = new Dictionary<TextTranslation.Language, string>();
+
+        public TranslationData(string fileName, TextTranslation.Language lang)
         {
             Dictionary<string, object> dict = JObject.Parse(File.ReadAllText(fileName)).ToObject<Dictionary<string, object>>();
 
@@ -26,12 +28,35 @@ namespace AchievementTracker.External
             {
                 TitleTranslation = (string)dict[nameof(TitleTranslation)];
             }
+
+            if (TitleTranslation != null)
+            {
+                achievementTitleDict[lang] = TitleTranslation;
+            }
         }
 
         public class AchievementTranslation
         {
             public string Name { get; set; }
             public string Description { get; set; }
+        }
+
+        public static string GetTitle()
+        {
+            var language = TextTranslation.Get().m_language;
+
+            if (achievementTitleDict.TryGetValue(language, out string title))
+            {
+                return title;
+            }
+            else if (achievementTitleDict.TryGetValue(TextTranslation.Language.ENGLISH, out title))
+            {
+                return title;
+            }
+            else
+            {
+                return "ACHIEVEMENTS";
+            }
         }
     }
 }

@@ -54,7 +54,8 @@ namespace AchievementTracker
         {
             Logger.Log("Adding title screen button");
 
-            var achievementsButton = ModHelper.Menus.MainMenu.SwitchProfileButton.Duplicate("Achievements".ToUpper());
+            var achievementsButton = ModHelper.Menus.MainMenu.SwitchProfileButton.Duplicate(TranslationData.GetTitle().ToUpper());
+            achievementsButton.Button.gameObject.GetComponentInChildren<Text>().gameObject.AddComponent<AchievementLocalizedText>();
             achievementsButton.OnClick += OnClickAchievementsButton;
         }
 
@@ -62,7 +63,8 @@ namespace AchievementTracker
         {
             Logger.Log("Adding pause screen button");
 
-            var achievementsButton = ModHelper.Menus.PauseMenu.OptionsButton.Duplicate("Achievements".ToUpper());
+            var achievementsButton = ModHelper.Menus.PauseMenu.OptionsButton.Duplicate(TranslationData.GetTitle().ToUpper());
+            achievementsButton.Button.gameObject.GetComponentInChildren<Text>().gameObject.AddComponent<AchievementLocalizedText>();
             achievementsButton.OnClick += OnClickAchievementsButton;
         }
 
