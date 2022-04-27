@@ -17,7 +17,6 @@ namespace AchievementTracker.Menus
         private static float _timer;
         private static GameObject _popupRoot;
         private static GameObject _popup;
-        private static Font _font;
 
         private static Queue<AchievementManager.AchievementInfo> _queue;
 
@@ -26,8 +25,6 @@ namespace AchievementTracker.Menus
             Logger.Log("Adding achievement popup");
 
             _queue = new Queue<AchievementManager.AchievementInfo>();
-
-            if (!_font) _font = Resources.FindObjectsOfTypeAll<Font>().Where(x => x.name == "Adobe - SerifGothicStd-ExtraBold").FirstOrDefault();
 
             _popupRoot = new GameObject();
             _popupRoot.SetActive(false);
