@@ -11,7 +11,7 @@
     },
     "ALPHA_PILOT": {
       "Name": "As",
-      "Description": "Volez manuellement vers la Sun Station."
+      "Description": "Volez manuellement vers la station solaire."
     },
     "YOU_TRIED": {
       "Name": "Ça valait le coup d'essayer.",
@@ -23,7 +23,7 @@
     },
     "SATELLITE": {
       "Name": "Rigidbody",
-      "Description": "Désorbiter le satellite hearthian."
+      "Description": "Désorbiter le satellite âtrien."
     },
     "HEARTH_TO_MOON": {
       "Name": "D'Âtrebois à la Lune",
@@ -31,7 +31,7 @@
     },
     "DEEP_IMPACT": {
       "Name": "Grand plongeon",
-      "Description": "Entrer dans l'océan assez vite pour briser le courant."
+      "Description": "Entrer dans l'océan de Léviathe assez vite pour briser le courant."
     },
     "HARMONIC_CONVERGENCE": {
       "Name": "Convergence harmonique",
@@ -63,7 +63,7 @@
     },
     "MICAS_WRATH": {
       "Name": "Pauvre Mica",
-      "Description": "Détruisez le micro fusée en volant vers le soleil ou Hollow's Lantern'."
+      "Description": "Détruisez le micro fusée en volant vers le soleil ou la Lanterne."
     },
     "STUDIOUS": {
       "Name": "Archéologue",
@@ -71,11 +71,11 @@
     },
     "AROUND_THE_WORLD": {
       "Name": "Le tour du monde en 90 secondes",
-      "Description": "Surfez autour de l'étranger en moins de 90 secondes."
+      "Description": "Surfez autour de l'Étranger en moins de 90 secondes."
     },
     "SILENCED_CARTOGRAPHER": {
       "Name": "Le cartographe muet",
-      "Description": "Rendre le Deep Space Satellite inutilisable."
+      "Description": "Rendre le satellite d'espace lointain inutilisable."
     },
     "TUBULAR": {
       "Name": "Quel tube !",
@@ -107,7 +107,7 @@
     },
     "SIMULATION": {
       "Name": "Hypothèse de simulation",
-      "Description": "Essayez d'utiliser l'artefact sur un feu de camp normal. Eh bien, cela règle cela!"
+      "Description": "Essayez d'utiliser l'artefact sur un feu de camp normal. Eh bien, ça règle ça!"
     },
     "FIRE_ARROWS": {
       "Name": "Flèches enflammées",
