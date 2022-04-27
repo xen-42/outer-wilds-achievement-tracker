@@ -3,15 +3,15 @@
     "AchievementTranslations": {
         "TERRIBLE_FATE": {
             "Name": "Te encontraste con un destino terrible.",
-            "Description": "Ya no hay vuelta atrás."
+            "Description": "Ya no hay vuelta atrÃ¡s."
         },
         "WHATS_THIS_BUTTON": {
             "Name": "Oye, para que sirve este boton?",
-            "Description": "Oprime el boton de eyección en la nave."
+            "Description": "Oprime el boton de eyecciÃ³n en la nave."
         },
         "ALPHA_PILOT": {
             "Name": "Piloto estrella",
-            "Description": "Vuela de forma manual hasta la Estación Solar."
+            "Description": "Vuela de forma manual hasta la EstaciÃ³n Solar."
         },
         "YOU_TRIED": {
             "Name": "Buen intento.",
@@ -23,7 +23,7 @@
         },
         "SATELLITE": {
             "Name": "Cuerpo rigido",
-            "Description": "Saca de órbita el satelite lumbreano."
+            "Description": "Saca de Ã³rbita el satelite lumbreano."
         },
         "HEARTH_TO_MOON": {
             "Name": "De la Lumbre a la Luna",
@@ -31,42 +31,42 @@
         },
         "DEEP_IMPACT": {
             "Name": "El ojo del abismo",
-            "Description": "Ingresa en el océano de Abismo del Gigante con la velocidad necesaria para atravesar la corriente."
+            "Description": "Ingresa en el ocÃ©ano de Abismo del Gigante con la velocidad necesaria para atravesar la corriente."
         },
         "HARMONIC_CONVERGENCE": {
-            "Name": "Convergencia harmónica",
-            "Description": "Consigue todos los instrumentos de los viajeros en simultáneo con tu señaloscopio."
+            "Name": "Convergencia harmÃ³nica",
+            "Description": "Consigue todos los instrumentos de los viajeros en simultÃ¡neo con tu seÃ±aloscopio."
         },
         "MUSEUM": {
-            "Name": "¡Eso debería estar en un museo!",
+            "Name": "Â¡Eso deberÃ­a estar en un museo!",
             "Description": "Lleva un artefacto al museo."
         },
         "DIEHARD": {
             "Name": "Duro de matar",
-            "Description": "Completa un bucle temporal (con vida) tras haber sufrido (y curado) más de 1000 puntos de daño."
+            "Description": "Completa un bucle temporal (con vida) tras haber sufrido (y curado) mÃ¡s de 1000 puntos de daÃ±o."
         },
         "PCHOOOOOOO": {
-            "Name": "¡Fiuuuuuuuu!",
-            "Description": "Haz despegar tu nave con un cañon gravitatorio."
+            "Name": "Â¡Fiuuuuuuuu!",
+            "Description": "Haz despegar tu nave con un caÃ±on gravitatorio."
         },
         "GONE_IN_60_SECONDS": {
             "Name": "60 segundos",
             "Description": "Muere en menos de 60 s tras despertar."
         },
         "CARCINOGENS": {
-            "Name": "Mmm, cancerígenos...",
+            "Name": "Mmm, cancerÃ­genos...",
             "Description": "Come 10 malvaviscos quemados."
         },
         "CUTTING_IT_CLOSE": {
-            "Name": "Propulsión improvisada",
+            "Name": "PropulsiÃ³n improvisada",
             "Description": "Usa el oxigeno de tu traje de manera imprudente."
         },
         "MICAS_WRATH": {
             "Name": "La furia de Mica",
-            "Description": "Destruye el modelo de cohete haciéndolo volar hacia el Sol o Farol de la Hondonada."
+            "Description": "Destruye el modelo de cohete haciÃ©ndolo volar hacia el Sol o Farol de la Hondonada."
         },
         "STUDIOUS": {
-            "Name": "Arqueología",
+            "Name": "ArqueologÃ­a",
             "Description": "Completa el registro de la nave."
         },
         "AROUND_THE_WORLD": {
@@ -75,15 +75,15 @@
         },
         "SILENCED_CARTOGRAPHER": {
             "Name": "El cartografo silenciado",
-            "Description": "Deja el Satélite del Espacio Profundo inoperable."
+            "Description": "Deja el SatÃ©lite del Espacio Profundo inoperable."
         },
         "TUBULAR": {
-            "Name": "¡Tubular!",
+            "Name": "Â¡Tubular!",
             "Description": "Surfea sobre la ola durante 15 segundos."
         },
         "EARLY_ADOPTER": {
             "Name": "Adoptador temprano",
-            "Description": "Intenta usar el segundo artefacto. La curiosidad mató al gato, pero un bucle de vuelta lo trajo."
+            "Description": "Intenta usar el segundo artefacto. La curiosidad matÃ³ al gato, pero un bucle de vuelta lo trajo."
         },
         "GRATE_FILTER": {
             "Name": "El gran filtro",
@@ -103,11 +103,11 @@
         },
         "SLEEP_WAKE_REPEAT": {
             "Name": "Duerme. Despierta. Repite.",
-            "Description": "Despiertate de un sueño de 5 maneras diferentes en un solo bucle."
+            "Description": "Despiertate de un sueÃ±o de 5 maneras diferentes en un solo bucle."
         },
         "SIMULATION": {
             "Name": "Hypotesis de la simulacion",
-            "Description": "Intenta usar el artefacto en una hoguera normal. ¡Bueno, eso lo resuelve!"
+            "Description": "Intenta usar el artefacto en una hoguera normal. Â¡Bueno, eso lo resuelve!"
         },
         "FIRE_ARROWS": {
             "Name": "Flechas de fuego",
@@ -115,7 +115,7 @@
         },
         "ONE_NINE": {
             "Name": "1 / 900",
-            "Description": "¡Oooh! ¡Me has pillado!"
+            "Description": "Â¡Oooh! Â¡Me has pillado!"
         },
         "TAKEMEALIVE": {
             "Name": "Nunca me atraparas vivo!",
@@ -126,7 +126,7 @@
             "Description": "Haz que un persecutor te ajuste la columna."
         },
         "FOUND_SIGNAL": {
-            "Name": "Señal encontrada",
+            "Name": "SeÃ±al encontrada",
             "Description": "Eh... Lo has hecho supongo?"
         }
     }
