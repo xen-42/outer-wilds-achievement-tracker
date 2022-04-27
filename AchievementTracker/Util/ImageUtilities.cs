@@ -25,7 +25,7 @@ namespace AchievementTracker.Utit
                 }
                 else
                 {
-                    Logger.Log($"Invalid file type for {filename}. Must be jpg or png.");
+                    Logger.Log($"Couldn't find jpg or png for {filename}.");
                     return null;
                 }
 
