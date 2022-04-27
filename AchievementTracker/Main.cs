@@ -15,10 +15,19 @@ namespace AchievementTracker
     public class Main : ModBehaviour
     {
         public static Main Instance;
+        public static bool OneShotPopups { get; private set; }
 
         public override object GetApi()
         {
             return new AchievementAPI();
+        }
+
+        public override void Configure(IModConfig config)
+        {
+            base.Configure(config);
+            OneShotPopups = config.GetSettingsValue<bool>("One-Shot Achievement Pop-Ups");
+
+            Logger.Log($"One-Shot Achievement Pop-Ups enabled? [{OneShotPopups}]");
         }
 
         private void Start()

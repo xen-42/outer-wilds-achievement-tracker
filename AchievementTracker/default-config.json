@@ -1,3 +1,6 @@
 {
-	"enabled": true
+	"enabled": true,
+	"settings": {
+		"One-Shot Achievement Pop-Ups": true
+	}
 }
