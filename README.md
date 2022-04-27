@@ -10,6 +10,10 @@ Also tracks custom mod achievements.
 
 More to come...
 
+## Settings
+
+- "One-Shot Achievement Pop-Ups": Set to true if you only want notifications when you get an achievement for the first time. Set to false if you want to know each time you meet the requirements.
+
 ## For mod developers
 
 Add this code to your mod for the Achievements+ API:
