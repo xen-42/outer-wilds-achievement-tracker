@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AchievementTracker.Util
 {
-    public class AchievementAPI
+    public class AchievementAPI : IAchievements
     {
         public void RegisterAchievement(string uniqueID, bool secret, ModBehaviour mod)
         {
