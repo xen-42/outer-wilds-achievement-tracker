@@ -30,28 +30,7 @@ namespace AchievementTracker
             }
 
             // Register their translations
-            foreach (TextTranslation.Language lang in Enum.GetValues(typeof(TextTranslation.Language)))
-            {
-                var folder = $"{Main.Instance.ModHelper.Manifest.ModFolderPath}";
-                var filename = $"Translations/{lang.ToString().ToLower()}.json";
-                if (File.Exists($"{folder}{filename}"))
-                {
-                    try
-                    {
-                        var translationTable = new TranslationData($"{folder}{filename}").AchievementTranslations;
-                        foreach (var uniqueID in translationTable.Keys)
-                        {
-                            var name = translationTable[uniqueID].Name;
-                            var description = translationTable[uniqueID].Description;
-                            RegisterTranslation(uniqueID, lang, name, description);
-                        }
-                    }
-                    catch(Exception ex)
-                    {
-                        Logger.LogError($"Failed to load translation data for {lang}\n{ex.Message}, {ex.StackTrace}");
-                    }
-                }
-            }
+            RegisterTranslationsFromFiles(Main.Instance, "Translations");
         }
 
         public static void RegisterAchievement(string uniqueID, bool secret, ModBehaviour mod)
@@ -73,6 +52,32 @@ namespace AchievementTracker
             if (_achievements.TryGetValue(uniqueID, out var info))
             {
                 info.AddTranslation(language, name, description);
+            }
+        }
+
+        public static void RegisterTranslationsFromFiles(ModBehaviour mod, string folderPath)
+        {
+            foreach (TextTranslation.Language lang in Enum.GetValues(typeof(TextTranslation.Language)))
+            {
+                var folder = $"{mod.ModHelper.Manifest.ModFolderPath}";
+                var filename = $"{folderPath}/{lang.ToString().ToLower()}.json";
+                if (File.Exists($"{folder}{filename}"))
+                {
+                    try
+                    {
+                        var translationTable = new TranslationData($"{folder}{filename}").AchievementTranslations;
+                        foreach (var uniqueID in translationTable.Keys)
+                        {
+                            var name = translationTable[uniqueID].Name;
+                            var description = translationTable[uniqueID].Description;
+                            RegisterTranslation(uniqueID, lang, name, description);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogError($"Failed to load translation data for {lang}\n{ex.Message}, {ex.StackTrace}");
+                    }
+                }
             }
         }
 

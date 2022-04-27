@@ -19,6 +19,11 @@ namespace AchievementTracker.Util
             AchievementManager.RegisterTranslation(uniqueID, language, name, description);
         }
 
+        public void RegisterTranslationFromFile(ModBehaviour mod, string folderPath)
+        {
+            AchievementManager.RegisterTranslationsFromFiles(mod, folderPath);
+        }
+
         public void EarnAchievement(string uniqueID)
         {
             AchievementManager.Earn(uniqueID);
