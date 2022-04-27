@@ -38,7 +38,7 @@ namespace AchievementTracker.Menus
 
         public static void Open()
         {
-            if (!_menuRoot) Create().transform.parent = GameObject.Find(SceneManager.GetActiveScene().name == "TitleScreen" ? "TitleMenu" : "PauseMenu").transform;
+            if (!_menuRoot) Create().transform.parent = UIHandler.GetRootMenu();
 
             if (_modList == null) MakeModList(0);
 
@@ -74,8 +74,10 @@ namespace AchievementTracker.Menus
 
         private static GameObject Create()
         {
+            // Don't want to cache this bc it has to update when you change languages
+            _font = UIHandler.GetFont();
+
             if (!_background) _background = Resources.FindObjectsOfTypeAll<Sprite>().Where(x => x.name == "Background").FirstOrDefault();
-            if (!_font) _font = Resources.FindObjectsOfTypeAll<Font>().Where(x => x.name == "Adobe - SerifGothicStd-ExtraBold").FirstOrDefault();
             if (!_buttonPrefab)
             {
                 var root = SceneManager.GetActiveScene().name == "TitleScreen" ? "TitleMenu" : "PauseMenu";
