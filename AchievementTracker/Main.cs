@@ -78,6 +78,8 @@ namespace AchievementTracker
             {
                 AchievementMenu.Close();
             }
+
+            AchievementPopup.Update();
         }
     }
 }

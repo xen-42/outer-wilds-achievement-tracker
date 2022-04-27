@@ -78,7 +78,9 @@ namespace AchievementTracker.Menus
             if (!_font) _font = Resources.FindObjectsOfTypeAll<Font>().Where(x => x.name == "Adobe - SerifGothicStd-ExtraBold").FirstOrDefault();
             if (!_buttonPrefab)
             {
-                _buttonPrefab = GameObject.Instantiate(GameObject.Find("TitleMenu/OptionsCanvas/OptionsMenu-Panel/OptionsButtons/UIElement-SaveAndExit"));
+                var root = SceneManager.GetActiveScene().name == "TitleScreen" ? "TitleMenu" : "PauseMenu";
+
+                _buttonPrefab = GameObject.Instantiate(GameObject.Find($"{root}/OptionsCanvas/OptionsMenu-Panel/OptionsButtons/UIElement-SaveAndExit"));
                 _buttonPrefab.GetComponent<ButtonWithHotkeyImageElement>().enabled = false;
                 _buttonPrefab.GetComponent<SubmitActionCloseMenu>().enabled = false;
                 //_buttonPrefab.GetComponent<UIStyleApplier>().enabled = false;
@@ -342,8 +344,11 @@ namespace AchievementTracker.Menus
             return panelObject;
         }
 
-        private static GameObject CreateAchievementUI(string uniqueID, string name, string description, bool locked, ModBehaviour mod)
+        public static GameObject CreateAchievementUI(string uniqueID, string name, string description, bool locked, ModBehaviour mod)
         {
+            // Since we call this from the popup class now just make sure the font isnt null
+            if (!_font) _font = Resources.FindObjectsOfTypeAll<Font>().Where(x => x.name == "Adobe - SerifGothicStd-ExtraBold").FirstOrDefault();
+
             Texture2D texture = null;
 
             try

@@ -1,4 +1,5 @@
 ﻿using AchievementTracker.External;
+using AchievementTracker.Menus;
 using AchievementTracker.Util;
 using OWML.ModHelper;
 using System;
@@ -87,6 +88,8 @@ namespace AchievementTracker
 
             Logger.Log($"Earned achievement! [{achievement.ModName}] [{achievement.GetName()}] [{achievement.GetDescription()}]");
             AchievementData.EarnAchievement(uniqueID);
+
+            AchievementPopup.Show(achievement);
         }
 
         public static Dictionary<string, AchievementInfo> GetAchievements()
