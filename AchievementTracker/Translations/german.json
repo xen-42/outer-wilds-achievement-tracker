@@ -1,0 +1,129 @@
+{
+    "TitleTranslation" : "Errungenschaften",
+    "AchievementTranslations": {
+        "TERRIBLE_FATE": {
+            "Name": "Dein Schicksal war ein fürchterliches.",
+            "Description": ""
+        },
+        "WHATS_THIS_BUTTON": {
+            "Name": "He, wozu ist dieser Knopf da?",
+            "Description": ""
+        },
+        "ALPHA_PILOT": {
+            "Name": "Ikarus",
+            "Description": ""
+        },
+        "YOU_TRIED": {
+            "Name": "Den Versuch war’s wert",
+            "Description": ""
+        },
+        "BEGINNERS_LUCK": {
+            "Name": "Anfängerglück",
+            "Description": ""
+        },
+        "SATELLITE": {
+            "Name": "Zieht die Köpfe ein!",
+            "Description": ""
+        },
+        "HEARTH_TO_MOON": {
+            "Name": "Vom Herd bis zum Mond",
+            "Description": "Lande mit der Modellrakete auf dem Abraumfelsen.."
+        },
+        "DEEP_IMPACT": {
+            "Name": "Harter Aufprall",
+            "Description": ""
+        },
+        "HARMONIC_CONVERGENCE": {
+            "Name": "Harmonische Konvergenz",
+            "Description": "Finde alle Instrumente des Reisenden gleichzeitig mit deinem Signaloskop."
+        },
+        "MUSEUM": {
+            "Name": "Das gehört in ein Museum!",
+            "Description": ""
+        },
+        "DIEHARD": {
+            "Name": "Zäher Knochen",
+            "Description": "Beende eine Zeitschleife (lebendig), nachdem du über 1000 Schaden erlitten (und geheilt) hast."
+        },
+        "PCHOOOOOOO": {
+            "Name": "Piiiiuuuuuuuu!",
+            "Description": "Starte dein Schiff mithilfe einer Schwerkraftkanone."
+        },
+        "GONE_IN_60_SECONDS": {
+            "Name": "Nur noch 60 Sekunden",
+            "Description": "Stirb nach dem Aufwachen binnen 60 Sekunden."
+        },
+        "CARCINOGENS": {
+            "Name": "Mjam, Karzinogene",
+            "Description": ""
+        },
+        "CUTTING_IT_CLOSE": {
+            "Name": "Enge Kiste",
+            "Description": "Verwende den Sauerstoff deines Raumanzugs auf unkluge Weise."
+        },
+        "MICAS_WRATH": {
+            "Name": "Glimmers Zorn",
+            "Description": ""
+        },
+        "STUDIOUS": {
+            "Name": "Habilitation",
+            "Description": "Fülle das Logbuchs des Schiffs komplett aus."
+        },
+        "AROUND_THE_WORLD": {
+            "Name": "In 90 Sekunden um die Welt",
+            "Description": ""
+        },
+        "SILENCED_CARTOGRAPHER": {
+            "Name": "Der stumme Kartograph",
+            "Description": ""
+        },
+        "TUBULAR": {
+            "Name": "Megamäßig!",
+            "Description": ""
+        },
+        "EARLY_ADOPTER": {
+            "Name": "Beta-Tester",
+            "Description": ""
+        },
+        "GRATE_FILTER": {
+            "Name": "Die „Gittere“ Wahrheit",
+            "Description": ""
+        },
+        "FLAT_HEARTHER": {
+            "Name": "Kaminaplättung",
+            "Description": ""
+        },
+        "CELCIUS": {
+            "Name": "232,78 Grad Celsius",
+            "Description": ""
+        },
+        "GHOSTS": {
+            "Name": "Deus ex Machina",
+            "Description": ""
+        },
+        "SLEEP_WAKE_REPEAT": {
+            "Name": "Schlafen. Aufwachen. Wieder von vorne.",
+            "Description": ""
+        },
+        "SIMULATION": {
+            "Name": "Simulationshypothese",
+            "Description": ""
+        },
+        "FIRE_ARROWS": {
+            "Name": "Feuerpfeile",
+            "Description": ""
+        },
+        "ONE_NINE": {
+            "Name": "1 / 900",
+            "Description": ""
+        },
+        "TAKEMEALIVE": {
+            "Name": "Lebendig kriegt ihr mich nie!",
+            "Description": ""
+        },
+        "OOFMYBONES": {
+            "Name": "Uff, aua, meine Knochen",
+            "Description": ""
+        }
+    }
+}
