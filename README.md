@@ -4,6 +4,12 @@ Tracks Steam achievements in an in-game menu for people playing on other platfor
 
 Also tracks custom mod achievements.
 
+## Supported mods
+
+- [Outer Thomas Echoes of the Tank Engine](https://github.com/xen-42/outer-wilds-tank-engine)
+
+More to come...
+
 ## For mod developers
 
 Add this code to your mod for the Achievements+ API:
