@@ -388,7 +388,5 @@ namespace AchievementTracker.Menus
 
             return panelObject;
         }
-
-
     }
 }
