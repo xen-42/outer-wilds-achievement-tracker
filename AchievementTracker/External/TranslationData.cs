@@ -19,6 +19,7 @@ namespace AchievementTracker.External
 
             if (dict.ContainsKey(nameof(AchievementTranslations)))
             {
+                // Have to do really weird casting here for some reason, because it's an object I guess
                 AchievementTranslations = (Dictionary<string, AchievementTranslation>)(dict[nameof(AchievementTranslations)] as Newtonsoft.Json.Linq.JObject).ToObject(typeof(Dictionary<string, AchievementTranslation>));
             }
             if(dict.ContainsKey(nameof(TitleTranslation)))
