@@ -70,64 +70,64 @@
             "Description": "Заполнить судовой журнал."
         },
         "AROUND_THE_WORLD": {
-            "Name": "Around the world in 90 seconds",
-            "Description": "Raft around the Stranger in under 90 seconds."
+            "Name": "Вокруг света за 90 секунд",
+            "Description": "Обогнуть «Незнакомца» на плоту не более чем за 90 секунд."
         },
         "SILENCED_CARTOGRAPHER": {
-            "Name": "The Silenced Cartographer",
-            "Description": "Render the Deep Space Satellite inoperable."
+            "Name": "Замолкший картограф",
+            "Description": "Вывести спутник из строя."
         },
         "TUBULAR": {
-            "Name": "Tubular!",
-            "Description": "Ride the face of the wave for at least 15 seconds on a raft."
+            "Name": "Сёрфинг",
+            "Description": "Продержаться на гребне волны не менее 15 секунд."
         },
         "EARLY_ADOPTER": {
-            "Name": "Early Adopter",
-            "Description": "Attempt to use the second artifact prototype. Curiosity killed the cat, but a time loop brought it back."
+            "Name": "Новые технологии",
+            "Description": "Пожертвовать собой во имя науки, испытывая второй прототип артефакта."
         },
         "GRATE_FILTER": {
-            "Name": "The Grate Filter",
-            "Description": "Swim through the dam grate. Not everyone makes it!"
+            "Name": "Малый фильтр",
+            "Description": "Преодолеть дамбу, проплыв через решётку."
         },
         "FLAT_HEARTHER": {
-            "Name": "Flat Hearther",
-            "Description": "Stand your ground beneath a moving chain elevator."
+            "Name": "Теория плоского камелька",
+            "Description": "Дождаться движущегося цепного подъёмника, стоя прямо под ним."
         },
         "CELCIUS": {
-            "Name": "Celsius 232.78",
-            "Description": "This knowledge isn't going to forbid itself!"
+            "Name": "232,78° по Цельсию",
+            "Description": "Сделать запретные знания ещё более запретными."
         },
         "GHOSTS": {
-            "Name": "Ghosts in the Machine",
-            "Description": "Reach all 3 Forbidden Archives in a single loop without getting caught."
+            "Name": "Призраки из машины",
+            "Description": "Посетить все 3 запретных архива за один цикл, ни разу не попавшись."
         },
         "SLEEP_WAKE_REPEAT": {
-            "Name": "Sleep. Wake. Repeat.",
-            "Description": "Be woken up from a dream 5 different ways in a single loop."
+            "Name": "Ни минуты покоя",
+            "Description": "Проснуться по пяти разным причинам за один цикл."
         },
         "SIMULATION": {
-            "Name": "Simulation Hypothesis",
-            "Description": "Attempt to use the artifact at a normal campfire. Well, that settles that!"
+            "Name": "Гипотеза о симуляции",
+            "Description": "Испытать артефакт возле обычного костра."
         },
         "FIRE_ARROWS": {
-            "Name": "Fire Arrows",
-            "Description": "Shoot the Little Scout at the artificial sun in the Stranger."
+            "Name": "Огненные стрелы",
+            "Description": "Направить «Маленького разведчика» в искусственное солнце внутри «Незнакомца»."
         },
         "ONE_NINE": {
             "Name": "1 / 900",
-            "Description": "Yahaha! You found me!"
+            "Description": "Найти кое-кого."
         },
         "TAKEMEALIVE": {
-            "Name": "You'll Never Take Me Alive!",
-            "Description": "Escape your pursuers by jumping to your \"death\" instead of dodging past them."
+            "Name": "Живьем не возьмёте",
+            "Description": "Умереть, вместо того чтобы уклониться, спасаясь от преследователей."
         },
         "OOFMYBONES": {
-            "Name": "Oof Ouch, My Bones",
-            "Description": "Have your spine adjusted by a pursuer."
+            "Name": "Что-то спину ломит",
+            "Description": "Получить массаж позвоночника от преследователя."
         },
         "FOUND_SIGNAL": {
-            "Name": "Found Signal",
-            "Description": "Uh... You did it I guess?"
+            "Name": "Найти сигнал",
+            "Description": "Эм... Ну, ты сделал это, молодец."
         }
     }
 }
