@@ -24,6 +24,18 @@ Then to access this in your mod, do:
 var AchievementsAPI = ModHelper.Interaction.GetModApi<IAchievements>("xen.AchievementTracker");
 ```
 
+Be sure to register achievements and their translations in the `Start` method of your mod so that they are set up immediately. 
+
+The `uniqueID` field for your achievements should be unique not only in your mod, but among all mods. For example, if I were to add an achievement to [New Horizons](https://github.com/xen-42/outer-wilds-new-horizons) for discovering 5 planets, the `uniqueID` could be something like `NEWHORIZONS.5PLANETS`. 
+
+There is an examples mod in the repo called `TestAchievementMod` which shows how to register achievements, register translations in two languages, and earn achievements on scene load, via the `GlobalMessenger` system, and using harmony patches.
+
+### Custom icons
+
+If you want custom icons to show up beside your achievements, simple add a folder called `Icons` to your mod. To create an icon for an achievement, put an image in this folder with its name equal to the `uniqueID` of the achievement. Similarly to make an icon for your mod, put an image in the folder with its name equal to the mod's name (not to its unique ID, just the human readable name from the `manifest.json` file in your mod).
+
+### Register Translations from Files
+
 The `RegisterTranslationsFromFiles` method will look in the folder path you give it for files named `english.json`, `spanish_la.json`, `german.json`, `french.json`, `italian.json`, `polish.json`, `portuguese_br.json`, `japanese.json`, `russian.json`, `chinese_simple.json`, `korean.json`, and `turkish.json`.
 
 The translations files should look like this:
