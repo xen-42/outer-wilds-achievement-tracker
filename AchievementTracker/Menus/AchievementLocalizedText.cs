@@ -30,6 +30,7 @@ namespace AchievementTracker.Menus
 		protected virtual void UpdateLanguage()
 		{
 			_text.text = TranslationData.GetTitle().ToUpper();
+			_text.font = UIHandler.GetFont();
 			_text.SetAllDirty();
 		}
 	}
