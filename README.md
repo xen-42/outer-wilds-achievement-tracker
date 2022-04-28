@@ -1,5 +1,7 @@
 # Outer Wilds Achievements+
 
+![Achievements_plus thumbnail](https://user-images.githubusercontent.com/22628069/165662247-60cf03ef-f7ac-4d41-a495-0db8709ffa93.png)
+
 Tracks Steam achievements in an in-game menu for people playing on other platforms that don't track achievements.
 
 Also tracks custom mod achievements.
