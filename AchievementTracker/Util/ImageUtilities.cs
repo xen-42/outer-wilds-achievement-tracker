@@ -29,7 +29,7 @@ namespace AchievementTracker.Utit
                     return null;
                 }
 
-                var texture = new Texture2D(2, 2);
+                var texture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
                 texture.LoadImage(data);
                 return texture;
             }
