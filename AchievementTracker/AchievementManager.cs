@@ -68,6 +68,12 @@ namespace AchievementTracker
                     {
                         var data = new TranslationData($"{folder}{filename}", lang);
 
+                        if (data.AchievementTranslations == null)
+                        {
+                            Logger.LogWarning($"Missing AchievementTranslations for {lang}");
+                            continue;
+                        }
+
                         var translationTable = data.AchievementTranslations;
                         foreach (var uniqueID in translationTable.Keys)
                         {

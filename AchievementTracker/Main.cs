@@ -1,14 +1,11 @@
-﻿using OWML.ModHelper;
-using OWML.Common;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using UnityEngine.UI;
-using AchievementTracker.Util;
-using AchievementTracker.External;
-using Logger = AchievementTracker.Util.Logger;
-using AchievementTracker.Utit;
-using System.Linq;
+﻿using AchievementTracker.External;
 using AchievementTracker.Menus;
+using AchievementTracker.Util;
+using OWML.Common;
+using OWML.ModHelper;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Logger = AchievementTracker.Util.Logger;
 
 namespace AchievementTracker
 {
@@ -85,7 +82,7 @@ namespace AchievementTracker
 
         private void Update()
         {
-            if(AchievementMenu.IsOpen && OWInput.IsNewlyPressed(InputLibrary.pause) || OWInput.IsNewlyPressed(InputLibrary.cancel))
+            if (AchievementMenu.IsOpen && OWInput.IsNewlyPressed(InputLibrary.pause) || OWInput.IsNewlyPressed(InputLibrary.cancel))
             {
                 AchievementMenu.Close();
             }

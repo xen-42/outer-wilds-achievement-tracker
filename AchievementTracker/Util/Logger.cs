@@ -21,5 +21,12 @@ namespace AchievementTracker.Util
 
             Main.Instance.ModHelper.Console.WriteLine("[Achievements] Error: " + msg, OWML.Common.MessageType.Error);
         }
+
+        public static void LogWarning(string msg)
+        {
+            if (Main.Instance == null) return;
+
+            Main.Instance.ModHelper.Console.WriteLine("[Achievements] Warning: " + msg, OWML.Common.MessageType.Warning);
+        }
     }
 }
