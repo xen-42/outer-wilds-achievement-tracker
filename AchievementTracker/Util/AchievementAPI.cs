@@ -1,4 +1,5 @@
-﻿using OWML.ModHelper;
+﻿using AchievementTracker.External;
+using OWML.ModHelper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace AchievementTracker.Util
         public void EarnAchievement(string uniqueID)
         {
             AchievementManager.Earn(uniqueID);
+        }
+
+        public bool HasAchievement(string uniqueID)
+        {
+            return AchievementData.HasAchievement(uniqueID);
         }
     }
 }
