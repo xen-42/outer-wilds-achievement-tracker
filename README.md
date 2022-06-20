@@ -9,6 +9,7 @@ Also tracks custom mod achievements.
 ## Supported mods
 
 - [Outer Thomas Echoes of the Tank Engine](https://github.com/xen-42/outer-wilds-tank-engine)
+- [New Horizons](https://github.com/xen-42/outer-wilds-new-horizons)
 
 More to come...
 
