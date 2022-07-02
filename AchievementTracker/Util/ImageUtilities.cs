@@ -55,7 +55,7 @@ namespace AchievementTracker.Utit
                 pixels[i] = new Color(gray, gray, gray);
             }
 
-            var newImage = new Texture2D(image.width, image.height);
+            var newImage = new Texture2D(image.width, image.height, TextureFormat.RGBA32, false);
             newImage.SetPixels(pixels);
             newImage.Apply();
             return newImage;
