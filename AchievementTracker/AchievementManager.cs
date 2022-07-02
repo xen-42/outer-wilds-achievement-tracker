@@ -143,125 +143,41 @@ namespace AchievementTracker
             switch (type)
             {
                 case Achievements.Type.TERRIBLE_FATE:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
                 case Achievements.Type.WHATS_THIS_BUTTON:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
                 case Achievements.Type.ALPHA_PILOT:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
                 case Achievements.Type.YOU_TRIED:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
                 case Achievements.Type.BEGINNERS_LUCK:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
                 case Achievements.Type.SATELLITE:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
-                case Achievements.Type.HEARTH_TO_MOON:
-                    modName = "Outer Wilds";
-                    secret = false;
-                    break;
                 case Achievements.Type.DEEP_IMPACT:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
-                case Achievements.Type.HARMONIC_CONVERGENCE:
-                    modName = "Outer Wilds";
-                    secret = false;
-                    break;
                 case Achievements.Type.MUSEUM:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
-                case Achievements.Type.DIEHARD:
-                    modName = "Outer Wilds";
-                    secret = false;
-                    break;
-                case Achievements.Type.PCHOOOOOOO:
-                    modName = "Outer Wilds";
-                    secret = false;
-                    break;
-                case Achievements.Type.GONE_IN_60_SECONDS:
-                    modName = "Outer Wilds";
-                    secret = false;
-                    break;
                 case Achievements.Type.CARCINOGENS:
-                    modName = "Outer Wilds";
-                    secret = true;
-                    break;
-                case Achievements.Type.CUTTING_IT_CLOSE:
-                    modName = "Outer Wilds";
-                    secret = false;
-                    break;
                 case Achievements.Type.MICAS_WRATH:
                     modName = "Outer Wilds";
                     secret = true;
                     break;
+                case Achievements.Type.HEARTH_TO_MOON:
+                case Achievements.Type.HARMONIC_CONVERGENCE:
+                case Achievements.Type.DIEHARD:
+                case Achievements.Type.PCHOOOOOOO:
+                case Achievements.Type.GONE_IN_60_SECONDS:
+                case Achievements.Type.CUTTING_IT_CLOSE:
                 case Achievements.Type.STUDIOUS:
                     modName = "Outer Wilds";
                     secret = false;
                     break;
                 case Achievements.Type.AROUND_THE_WORLD:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.SILENCED_CARTOGRAPHER:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.TUBULAR:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.EARLY_ADOPTER:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.GRATE_FILTER:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.FLAT_HEARTHER:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.CELCIUS:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.GHOSTS:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.SLEEP_WAKE_REPEAT:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.SIMULATION:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.FIRE_ARROWS:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.ONE_NINE:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.TAKEMEALIVE:
-                    modName = "Echoes of the Eye";
-                    secret = true;
-                    break;
                 case Achievements.Type.OOFMYBONES:
                     modName = "Echoes of the Eye";
                     secret = true;
