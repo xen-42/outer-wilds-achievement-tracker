@@ -42,7 +42,7 @@ namespace AchievementTracker.Utit
         public static Sprite MakeSprite(Texture2D texture)
         {
             var rect = new Rect(0, 0, texture.width, texture.height);
-            var pivot = new Vector2(texture.width / 2, texture.height / 2);
+            var pivot = new Vector2(0.5f, 0.5f);
             return Sprite.Create(texture, rect, pivot);
         }
 
