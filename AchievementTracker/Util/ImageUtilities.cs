@@ -51,10 +51,8 @@ namespace AchievementTracker.Utit
             var pixels = image.GetPixels();
             for (int i = 0; i < pixels.Length; i++)
             {
-                var grey = pixels[i].r * 0.3f + pixels[i].g * 0.59f + pixels[i].b * 0.11f;
-                pixels[i].r = grey;
-                pixels[i].g = grey;
-                pixels[i].b = grey;
+                var gray = pixels[i].grayscale;
+                pixels[i] = new Color(gray, gray, gray);
             }
 
             var newImage = new Texture2D(image.width, image.height);
