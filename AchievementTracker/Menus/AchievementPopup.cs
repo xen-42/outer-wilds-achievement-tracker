@@ -18,13 +18,13 @@ namespace AchievementTracker.Menus
         private static GameObject _popupRoot;
         private static GameObject _popup;
 
-        private static Queue<AchievementManager.AchievementInfo> _queue;
+        private static Queue<PopupQueueEntry> _queue;
 
         private static void Create()
         {
             Logger.Log("Adding achievement popup");
 
-            _queue = new Queue<AchievementManager.AchievementInfo>();
+            _queue = new Queue<PopupQueueEntry>();
 
             _popupRoot = new GameObject();
             _popupRoot.SetActive(false);
@@ -51,7 +51,18 @@ namespace AchievementTracker.Menus
 
                     GameObject.Destroy(_popup);
 
-                    if (_queue.Count != 0) Show(_queue.Dequeue());
+                    if (_queue.Count != 0)
+                    {
+                        var entry = _queue.Dequeue();
+                        if (entry.IsProgressPopup)
+						{
+                            ShowProgress(entry.Achievement, entry.Current, entry.Final);
+						}
+						else
+						{
+                            Show(entry.Achievement);
+						}
+                    }
                 }
             }
         }
@@ -66,7 +77,14 @@ namespace AchievementTracker.Menus
             if (_popup)
             {
                 // Add it to the queue but also try to tone down the number of duplicates
-                if (!_queue.Contains(achievement)) _queue.Enqueue(achievement);
+                if (!_queue.Any(x => x.Achievement == achievement))
+				{
+                    _queue.Enqueue(new PopupQueueEntry()
+					{
+                        Achievement = achievement,
+                        IsProgressPopup = false
+					});
+                }
             }
             else
             {
@@ -75,5 +93,43 @@ namespace AchievementTracker.Menus
                 _popup.transform.position = new Vector3(160, 40, 0);
             }
         }
+
+        public static void ShowProgress(AchievementManager.AchievementInfo achievement, int current, int final)
+		{
+            if (!_popupRoot)
+                Create();
+
+            _isShown = true;
+            _timer = SHOW_TIME;
+
+            if (_popup)
+            {
+                // Add it to the queue but also try to tone down the number of duplicates
+                if (!_queue.Any(x => x.Achievement == achievement))
+                {
+                    _queue.Enqueue(new PopupQueueEntry()
+                    {
+                        Achievement = achievement,
+                        IsProgressPopup = true,
+                        Current = current,
+                        Final = final
+                    });
+                }
+            }
+            else
+            {
+                _popup = AchievementMenu.CreateAchievementUI(achievement.UniqueID, achievement.GetName(), $"{current} / {final}", true, achievement.Mod);
+                _popup.GetComponent<RectTransform>().SetParent(_popupRoot.transform);
+                _popup.transform.position = new Vector3(160, 40, 0);
+            }
+        }
     }
+
+    public struct PopupQueueEntry
+	{
+        public AchievementManager.AchievementInfo Achievement;
+        public bool IsProgressPopup;
+        public int Current;
+        public int Final;
+	}
 }

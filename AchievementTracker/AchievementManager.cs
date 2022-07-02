@@ -102,6 +102,14 @@ namespace AchievementTracker
             }
         }
 
+        public static void Progress(string uniqueID, int current, int final)
+		{
+            if (!_achievements.TryGetValue(uniqueID, out AchievementInfo achievement))
+                return;
+
+            AchievementPopup.ShowProgress(achievement, current, final);
+        }
+
         public static Dictionary<string, AchievementInfo> GetAchievements()
         {
             return _achievements;
@@ -283,6 +291,7 @@ namespace AchievementTracker
             public string UniqueID { get; private set; }
             public string ModName { get; private set; }
             public bool Secret { get; private set; }
+
             public AchievementInfo(string uniqueID, ModBehaviour mod, bool secret)
             {
                 _nameDict = new Dictionary<TextTranslation.Language, string>();
