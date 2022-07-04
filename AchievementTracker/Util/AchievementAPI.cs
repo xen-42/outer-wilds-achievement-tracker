@@ -30,6 +30,11 @@ namespace AchievementTracker.Util
             AchievementManager.Earn(uniqueID);
         }
 
+        public void ShowProgressPopup(string uniqueID, int current, int final)
+		{
+            AchievementManager.Progress(uniqueID, current, final);
+		}
+
         public bool HasAchievement(string uniqueID)
         {
             return AchievementData.HasAchievement(uniqueID);
