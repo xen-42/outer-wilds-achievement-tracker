@@ -42,7 +42,7 @@ namespace AchievementTracker.Utit
         public static Sprite MakeSprite(Texture2D texture)
         {
             var rect = new Rect(0, 0, texture.width, texture.height);
-            var pivot = new Vector2(texture.width / 2, texture.height / 2);
+            var pivot = new Vector2(0.5f, 0.5f);
             return Sprite.Create(texture, rect, pivot);
         }
 
@@ -51,13 +51,11 @@ namespace AchievementTracker.Utit
             var pixels = image.GetPixels();
             for (int i = 0; i < pixels.Length; i++)
             {
-                var grey = pixels[i].r * 0.3f + pixels[i].g * 0.59f + pixels[i].b * 0.11f;
-                pixels[i].r = grey;
-                pixels[i].g = grey;
-                pixels[i].b = grey;
+                var gray = pixels[i].grayscale;
+                pixels[i] = new Color(gray, gray, gray);
             }
 
-            var newImage = new Texture2D(image.width, image.height);
+            var newImage = new Texture2D(image.width, image.height, TextureFormat.RGBA32, false);
             newImage.SetPixels(pixels);
             newImage.Apply();
             return newImage;
