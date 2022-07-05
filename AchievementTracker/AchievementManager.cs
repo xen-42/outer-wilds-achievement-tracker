@@ -102,13 +102,23 @@ namespace AchievementTracker
             }
         }
 
-        public static void Progress(string uniqueID, int current, int final)
+        public static void Progress(string uniqueID, int current, int final, bool showPopup)
 		{
             if (!_achievements.TryGetValue(uniqueID, out AchievementInfo achievement))
                 return;
 
-            AchievementPopup.ShowProgress(achievement, current, final);
+            AchievementData.UpdateProgress(uniqueID, current);
+
+            if (showPopup)
+			{
+                AchievementPopup.ShowProgress(achievement, current, final);
+            }
         }
+
+        public static int GetProgress(string uniqueID)
+		{
+            return AchievementData.GetProgress(uniqueID);
+		}
 
         public static Dictionary<string, AchievementInfo> GetAchievements()
         {
