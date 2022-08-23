@@ -49,7 +49,7 @@ namespace AchievementTracker.Utit
         public static Texture2D GreyscaleImage(Texture2D image)
         {
             var pixels = image.GetPixels();
-            for (int i = 0; i < pixels.Length; i++)
+            for (var i = 0; i < pixels.Length; i++)
             {
                 var gray = pixels[i].grayscale;
                 pixels[i] = new Color(gray, gray, gray);
