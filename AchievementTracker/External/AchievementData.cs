@@ -83,6 +83,38 @@ namespace AchievementTracker.External
             }
         }
 
+        public static void UpdateProgress(string uniqueId, int progress)
+		{
+            if (_activeProfile == null && !Load())
+                return;
+
+            Logger.Log($"Updating progress of {uniqueId} to {progress}");
+
+            if (_activeProfile.Progress.ContainsKey(uniqueId))
+			{
+                _activeProfile.Progress[uniqueId] = progress;
+			}
+			else
+			{
+                _activeProfile.Progress.Add(uniqueId, progress);
+			}
+            Save();
+        }
+
+        public static int GetProgress(string uniqueID)
+		{
+            if (_activeProfile == null && !Load())
+                return 0;
+
+            if (!_activeProfile.Progress.ContainsKey(uniqueID))
+			{
+                _activeProfile.Progress.Add(uniqueID, 0);
+                return 0;
+			}
+
+            return _activeProfile.Progress[uniqueID];
+        }
+
         private class AchievementSaveFile
         {
             public AchievementSaveFile()
@@ -98,9 +130,11 @@ namespace AchievementTracker.External
             public AchievementProfile()
             {
                 EarnedAchievements = new List<string>();
+                Progress = new Dictionary<string, int>();
             }
 
             public List<string> EarnedAchievements { get; set; }
+            public Dictionary<string, int> Progress { get; set; }
         }
     }
 }
