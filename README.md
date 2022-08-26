@@ -13,6 +13,9 @@ Also tracks custom mod achievements.
     - [Signals+](https://outerwildsmods.com/mods/signals/)
 - [Outer Thomas Echoes of the Tank Engine](https://outerwildsmods.com/mods/outerthomasechoesofthetankengine/)
 
+## Achievement mods
+- [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/) 
+
 More to come...
 
 ## Settings
