@@ -197,6 +197,7 @@ namespace AchievementTracker
                 case Achievements.Type.ONE_NINE:
                 case Achievements.Type.TAKEMEALIVE:
                 case Achievements.Type.OOFMYBONES:
+                case Achievements.Type.FOUND_SIGNAL:
                     modName = "Echoes of the Eye";
                     secret = true;
                     break;
