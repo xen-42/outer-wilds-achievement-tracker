@@ -99,8 +99,12 @@ namespace AchievementTracker
                 Logger.Log($"Earned achievement! [{achievement.ModName}] [{achievement.GetName()}] [{achievement.GetDescription()}]");
                 AchievementData.EarnAchievement(uniqueID);
                 AchievementPopup.Show(achievement);
+
+                Main.PlayAchievementSound();
             }
+
         }
+
 
         public static void Progress(string uniqueID, int current, int final, bool showPopup)
 		{

@@ -3,6 +3,8 @@ using AchievementTracker.Menus;
 using AchievementTracker.Util;
 using OWML.Common;
 using OWML.ModHelper;
+using System.IO;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Logger = AchievementTracker.Util.Logger;
@@ -12,6 +14,8 @@ namespace AchievementTracker
     public class Main : ModBehaviour
     {
         public static Main Instance;
+
+        public static OWAudioSource AchievementAudio;
         public static bool OneShotPopups { get; private set; }
 
         public override object GetApi()
@@ -27,6 +31,45 @@ namespace AchievementTracker
             Logger.Log($"One-Shot Achievement Pop-Ups enabled? [{OneShotPopups}]");
         }
 
+        public static OWAudioSource MakeOneShot(GameObject parent, OWAudioMixer.TrackName track)
+        {
+
+            var go = new GameObject($"OneShot");
+            go.transform.parent = parent.transform;
+            go.transform.localPosition = Vector3.zero;
+            go.SetActive(false);
+
+            var audioSource = go.AddComponent<AudioSource>();
+            var oneShotAudioSource = go.AddComponent<OWAudioSource>();
+            oneShotAudioSource._audioSource = audioSource;
+            oneShotAudioSource.spatialBlend = 1f;
+            oneShotAudioSource.SetTrack(track);
+
+            go.SetActive(true);
+
+            go.GetComponent<AudioSource>().clip = Instance.ModHelper.Assets.GetAudio("Icons/steam-achievement.mp3");
+
+            return oneShotAudioSource;
+        }
+
+        public static void PlayAchievementSound()
+        {
+            // prevent achievement sounds from playing on start-up
+            if (Time.time < 3) return;
+            if (AchievementAudio == null)
+            {
+                AchievementAudio = MakeOneShot(Instance.gameObject, OWAudioMixer.TrackName.Environment_Unfiltered);
+
+                if (AchievementAudio == null)
+                {
+                    Logger.LogError("Unable to play requested audio!");
+                    return;
+                }
+            }
+
+            AchievementAudio.Play();
+        }
+
         private void Start()
         {
             Instance = this;
@@ -40,6 +83,8 @@ namespace AchievementTracker
             ModHelper.Menus.MainMenu.OnInit += InitTitleMenu;
             ModHelper.Menus.PauseMenu.OnInit += InitPauseMenu;
             ModHelper.Menus.PauseMenu.OnClosed += () => AchievementMenu.Close(false);
+
+            AchievementAudio = MakeOneShot(Instance.gameObject, OWAudioMixer.TrackName.Menu);
         }
 
         public void OnDestroy()
