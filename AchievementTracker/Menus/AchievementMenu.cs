@@ -1,11 +1,7 @@
 ﻿using AchievementTracker.External;
 using AchievementTracker.Utit;
 using OWML.ModHelper;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -35,6 +31,9 @@ namespace AchievementTracker.Menus
         private static readonly Color _textColor = new Color(0.9686f, 0.498f, 0.2078f, 1f);
 
         public static bool IsOpen { get; private set; }
+
+        public static GameObject LeftButton { get; private set; }
+        public static GameObject RightButton { get; private set; }
 
         public static void Open()
         {
@@ -127,43 +126,44 @@ namespace AchievementTracker.Menus
 
             var back = UITextLibrary.GetString(UITextType.MenuBack).ToUpper();
             MakeButton(back, new Vector3(0, -320, 0), new Vector2(240, 64), _menuRoot.transform, Back);
-            MakeButton("<", new Vector3(-230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(-1));
-            MakeButton(">", new Vector3(230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(1));
+            LeftButton = MakeButton("<", new Vector3(-230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(-1));
+            RightButton = MakeButton(">", new Vector3(230, -320, 0), new Vector2(120, 64), _menuRoot.transform, () => ChangePage(1));
 
             return _menuRoot;
         }
 
+        private static int ModPageCount => (int)(Mathf.Floor((_shownMods - 1) / PAGE_LIMIT) + 1);
+        private static int AchievementPageCount => (int)(Mathf.Floor((_shownAchievements - 1) / PAGE_LIMIT) + 1);
+
         private static void ChangePage(int shift)
         {
-            if(_onModList)
+            if (_onModList)
             {
-                var pageCount = (int)(Mathf.Floor((_shownMods - 1) / PAGE_LIMIT) + 1);
                 var newPage = 0;
-                if (pageCount > 0)
+                if (ModPageCount > 0)
                 {
-                    newPage = (_currentPage + shift + pageCount) % pageCount;
+                    newPage = (_currentPage + shift + ModPageCount) % ModPageCount;
                 }
 
-                Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{pageCount}]");
+                Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{ModPageCount}]");
 
                 MakeModList(newPage);
             }
             else
             {
-                var pageCount = (int)(Mathf.Floor((_shownAchievements - 1) / PAGE_LIMIT) + 1);
                 var newPage = 0;
-                if (pageCount > 0)
+                if (AchievementPageCount > 0)
                 {
-                    newPage = (_currentPage + shift + pageCount) % pageCount;
+                    newPage = (_currentPage + shift + AchievementPageCount) % AchievementPageCount;
                 }
 
-                Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{pageCount}]");
+                Logger.Log($"Changing from page [{_currentPage}] to [{newPage}] out of [{AchievementPageCount}]");
 
                 ShowAchievementsList(_currentModName, newPage);
             }
         }
 
-        private static void MakeButton(string text, Vector3 position, Vector2 size, Transform parent, UnityAction call)
+        private static GameObject MakeButton(string text, Vector3 position, Vector2 size, Transform parent, UnityAction call)
         {
             var button = GameObject.Instantiate(_buttonPrefab);
             button.name = $"{text}_Button";
@@ -193,12 +193,14 @@ namespace AchievementTracker.Menus
             textComponent.text = $"{text}";
 
             button.GetComponent<UIStyleApplier>()._foregroundGraphics = new Text[] { textComponent };
+
+            return button;
         }
 
         private static void MakeModList(int page)
         {
             if (_modList) GameObject.Destroy(_modList);
-            
+
             _onModList = true;
 
             _currentPage = page;
@@ -223,12 +225,21 @@ namespace AchievementTracker.Menus
                 var ui = CreateModUI(mod.Item2, mod.Item1);
                 ui.GetComponent<RectTransform>().SetParent(_modList.transform);
             }
+
+            RefreshPageButtons(page);
         }
 
         private static void Back()
         {
-            if (_currentAchievementList) HideAchievementsList();
-            else Close();
+            if (_currentAchievementList)
+            {
+                HideAchievementsList();
+                MakeModList(0);
+            }
+            else
+            {
+                Close();
+            }
         }
 
         private static void ShowAchievementsList(string modName, int page)
@@ -281,15 +292,21 @@ namespace AchievementTracker.Menus
 
             // Stop showing the mod list
             _modList.SetActive(false);
+
+            RefreshPageButtons(page);
         }
 
         private static void HideAchievementsList()
         {
             GameObject.Destroy(_currentAchievementList);
             _currentAchievementList = null;
+        }
 
-            _onModList = true;
-            _modList.SetActive(true);
+        private static void RefreshPageButtons(int page)
+        {
+            var pageCount = _onModList ? ModPageCount : AchievementPageCount;
+            LeftButton.SetActive(page != 0 && pageCount != 1);
+            RightButton.SetActive(page < pageCount - 1 && pageCount != 1);
         }
 
         private static GameObject CreateModUI(string modName, ModBehaviour mod)

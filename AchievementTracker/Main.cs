@@ -1,9 +1,10 @@
 ﻿using AchievementTracker.External;
 using AchievementTracker.Menus;
 using AchievementTracker.Util;
+using HarmonyLib;
 using OWML.Common;
 using OWML.ModHelper;
-using System.IO;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +29,7 @@ namespace AchievementTracker
         {
             base.Configure(config);
             OneShotPopups = config.GetSettingsValue<bool>("One-Shot Achievement Pop-Ups");
+            ShowMoreLogs = config.GetSettingsValue<bool>("Show More Logs");
 
             Logger.Log($"One-Shot Achievement Pop-Ups enabled? [{OneShotPopups}]");
         }
@@ -77,7 +79,7 @@ namespace AchievementTracker
 
             AchievementManager.Init();
 
-            Patches.Apply();
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
 
             SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -86,6 +88,8 @@ namespace AchievementTracker
             ModHelper.Menus.PauseMenu.OnClosed += () => AchievementMenu.Close(false);
 
             AchievementAudio = MakeOneShot(Instance.gameObject, OWAudioMixer.TrackName.Menu);
+
+            TextTranslation.Get().OnLanguageChanged += () => AchievementData.Load();
         }
 
         public void OnDestroy()

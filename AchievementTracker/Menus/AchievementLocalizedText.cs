@@ -1,15 +1,10 @@
 ﻿using AchievementTracker.External;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace AchievementTracker.Menus
 {
-	public class AchievementLocalizedText : MonoBehaviour
+    public class AchievementLocalizedText : MonoBehaviour
 	{
 		private Text _text;
 

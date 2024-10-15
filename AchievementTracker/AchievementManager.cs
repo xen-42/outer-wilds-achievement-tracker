@@ -6,10 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace AchievementTracker
 {
@@ -72,10 +68,7 @@ namespace AchievementTracker
 
                         if (data.AchievementTranslations == null)
                         {
-                            if (Main.ShowMoreLogs)
-                            {
-                                Logger.LogWarning($"Missing AchievementTranslations for {lang}");
-                            }
+                            Logger.LogWarning($"Missing AchievementTranslations for {lang}");
                             continue;
                         }
 

@@ -3,8 +3,8 @@
   "author": "xen",
   "name": "Achievements+",
   "uniqueName": "xen.AchievementTracker",
-  "version": "0.4.1",
-  "owmlVersion": "2.6.0",
+  "version": "1.0.0",
+  "owmlVersion": "2.14.0",
   "priorityLoad": true,
   "donateLink": "https://www.patreon.com/xen42"
 }
