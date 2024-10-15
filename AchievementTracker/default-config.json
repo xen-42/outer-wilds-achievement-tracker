@@ -1,6 +1,7 @@
 {
 	"enabled": true,
 	"settings": {
-		"One-Shot Achievement Pop-Ups": true
+		"One-Shot Achievement Pop-Ups": true,
+		"Show More Logs": false
 	}
 }

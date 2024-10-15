@@ -17,6 +17,7 @@ namespace AchievementTracker
 
         public static OWAudioSource AchievementAudio;
         public static bool OneShotPopups { get; private set; }
+        public static bool ShowMoreLogs { get; private set; }
 
         public override object GetApi()
         {
