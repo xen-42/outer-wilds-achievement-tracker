@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace AchievementTracker
 {
@@ -70,7 +72,10 @@ namespace AchievementTracker
 
                         if (data.AchievementTranslations == null)
                         {
-                            Logger.LogWarning($"Missing AchievementTranslations for {lang}");
+                            if (Main.ShowMoreLogs)
+                            {
+                                Logger.LogWarning($"Missing AchievementTranslations for {lang}");
+                            }
                             continue;
                         }
 
@@ -99,8 +104,12 @@ namespace AchievementTracker
                 Logger.Log($"Earned achievement! [{achievement.ModName}] [{achievement.GetName()}] [{achievement.GetDescription()}]");
                 AchievementData.EarnAchievement(uniqueID);
                 AchievementPopup.Show(achievement);
+
+                Main.PlayAchievementSound();
             }
+
         }
+
 
         public static void Progress(string uniqueID, int current, int final, bool showPopup)
 		{
