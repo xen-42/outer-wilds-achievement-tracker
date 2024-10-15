@@ -72,10 +72,7 @@ namespace AchievementTracker
 
                         if (data.AchievementTranslations == null)
                         {
-                            if (Main.ShowMoreLogs)
-                            {
-                                Logger.LogWarning($"Missing AchievementTranslations for {lang}");
-                            }
+                            Logger.LogWarning($"Missing AchievementTranslations for {lang}");
                             continue;
                         }
 

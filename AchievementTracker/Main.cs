@@ -28,6 +28,7 @@ namespace AchievementTracker
         {
             base.Configure(config);
             OneShotPopups = config.GetSettingsValue<bool>("One-Shot Achievement Pop-Ups");
+            ShowMoreLogs = config.GetSettingsValue<bool>("Show More Logs");
 
             Logger.Log($"One-Shot Achievement Pop-Ups enabled? [{OneShotPopups}]");
         }
