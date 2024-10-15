@@ -3,7 +3,6 @@ using AchievementTracker.Menus;
 using AchievementTracker.Util;
 using OWML.Common;
 using OWML.ModHelper;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
