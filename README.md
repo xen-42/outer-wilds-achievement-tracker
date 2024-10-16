@@ -8,19 +8,20 @@ Also tracks custom mod achievements.
 
 **If you make a mod that has achievements, please open a PR to add it to this list!**
 
-## Supported mods
+## Supported Mods
 
+- [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/)
+- [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
+- [Grapefruit](https://outerwildsmods.com/mods/grapefruit/)
+- [Hearthian Golf The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
 - [New Horizons](https://outerwildsmods.com/mods/newhorizons/)
-    - [New Horizons Examples](https://outerwildsmods.com/mods/newhorizonsexamples/)
-    - [Signals+](https://outerwildsmods.com/mods/signals/)
-    - [Real Solar System](https://outerwildsmods.com/mods/realsolarsystem/)
-    - [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
+- [New Horizons Examples](https://outerwildsmods.com/mods/newhorizonsexamples/)
 - [Outer Thomas Echoes of the Tank Engine](https://outerwildsmods.com/mods/outerthomasechoesofthetankengine/)
+- [Real Solar System](https://outerwildsmods.com/mods/realsolarsystem/)
 - [Ship Enhancements](https://outerwildsmods.com/mods/shipenhancements/)
-- [Hearthian Golf - The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
+- [Signals+](https://outerwildsmods.com/mods/signals/)
 
-## Achievement mods
-- [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/) 
+And more to come...
 
 ## Settings
 
