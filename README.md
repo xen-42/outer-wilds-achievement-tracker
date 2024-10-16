@@ -6,17 +6,21 @@ Tracks Steam achievements in an in-game menu for people playing on other platfor
 
 Also tracks custom mod achievements.
 
+**If you make a mod that has achievements, please open a PR to add it to this list!**
+
 ## Supported mods
 
 - [New Horizons](https://outerwildsmods.com/mods/newhorizons/)
     - [New Horizons Examples](https://outerwildsmods.com/mods/newhorizonsexamples/)
     - [Signals+](https://outerwildsmods.com/mods/signals/)
+    - [Real Solar System](https://outerwildsmods.com/mods/realsolarsystem/)
+    - [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
 - [Outer Thomas Echoes of the Tank Engine](https://outerwildsmods.com/mods/outerthomasechoesofthetankengine/)
+- [Ship Enhancements](https://outerwildsmods.com/mods/shipenhancements/)
+- [Hearthian Golf - The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
 
 ## Achievement mods
 - [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/) 
-
-More to come...
 
 ## Settings
 
