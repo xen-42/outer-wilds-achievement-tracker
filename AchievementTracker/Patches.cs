@@ -20,11 +20,25 @@ namespace AchievementTracker
             AchievementData.Load();
         }
 
+        private static bool _saveFileExists;
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerData), nameof(PlayerData.ResetGame))]
+        public static void PlayerData_ResetGame_Prefix()
+        {
+            _saveFileExists = PlayerData._currentGameSave != null && PlayerData._currentGameSave.loopCount > 1;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(PlayerData), nameof(PlayerData.ResetGame))]
         public static void PlayerData_ResetGame()
         {
-            AchievementData.Reset();
+            // After getting beginners luck, no save file is actually made
+            // If you go to continue playing on this profile, the achievement would get reset meaning no profile can 100% all achievements
+            // To get around this we skip resetting if theres no save file made yet
+            if (_saveFileExists)
+            {
+                AchievementData.Reset();
+            }
         }
 
         [HarmonyPostfix]
