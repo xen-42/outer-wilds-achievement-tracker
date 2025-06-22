@@ -11,6 +11,7 @@ Also tracks custom mod achievements.
 ## Supported Mods
 
 - [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/)
+- [Forgotten Castaways](https://outerwildsmods.com/mods/forgottencastaways/)
 - [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
 - [Grapefruit](https://outerwildsmods.com/mods/grapefruit/)
 - [Hearthian Golf The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
