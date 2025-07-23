@@ -21,6 +21,7 @@ Also tracks custom mod achievements.
 - [Real Solar System](https://outerwildsmods.com/mods/realsolarsystem/)
 - [Ship Enhancements](https://outerwildsmods.com/mods/shipenhancements/)
 - [Signals+](https://outerwildsmods.com/mods/signals/)
+- [The Mystery of I Cannot Find My Cat](https://outerwildsmods.com/mods/themysteryoficannotfindmycat/)
 
 And more to come...
 
