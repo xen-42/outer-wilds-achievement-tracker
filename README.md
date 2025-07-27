@@ -22,6 +22,7 @@ Also tracks custom mod achievements.
 - [Ship Enhancements](https://outerwildsmods.com/mods/shipenhancements/)
 - [Signals+](https://outerwildsmods.com/mods/signals/)
 - [The Mystery of I Cannot Find My Cat](https://outerwildsmods.com/mods/themysteryoficannotfindmycat/)
+- [The Stranger They Are](https://outerwildsmods.com/mods/thestrangertheyare/)
 
 And more to come...
 
