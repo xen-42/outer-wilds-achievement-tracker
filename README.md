@@ -12,7 +12,6 @@ Also tracks custom mod achievements.
 
 - [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/)
 - [Forgotten Castaways](https://outerwildsmods.com/mods/forgottencastaways/)
-- [The Stranger They Are](https://outerwildsmods.com/mods/thestrangertheyare/)
 - [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
 - [Grapefruit](https://outerwildsmods.com/mods/grapefruit/)
 - [Hearthian Golf The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
@@ -23,6 +22,7 @@ Also tracks custom mod achievements.
 - [Ship Enhancements](https://outerwildsmods.com/mods/shipenhancements/)
 - [Signals+](https://outerwildsmods.com/mods/signals/)
 - [The Mystery of I Cannot Find My Cat](https://outerwildsmods.com/mods/themysteryoficannotfindmycat/)
+- [The Stranger They Are](https://outerwildsmods.com/mods/thestrangertheyare/)
 
 And more to come...
 
