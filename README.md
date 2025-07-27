@@ -12,6 +12,7 @@ Also tracks custom mod achievements.
 
 - [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/)
 - [Forgotten Castaways](https://outerwildsmods.com/mods/forgottencastaways/)
+- [The Stranger They Are](https://outerwildsmods.com/mods/thestrangertheyare/)
 - [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
 - [Grapefruit](https://outerwildsmods.com/mods/grapefruit/)
 - [Hearthian Golf The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
