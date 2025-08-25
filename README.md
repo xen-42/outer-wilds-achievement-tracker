@@ -10,6 +10,7 @@ Also tracks custom mod achievements.
 
 ## Supported Mods
 
+- [Core Collapse](https://outerwildsmods.com/mods/corecollapse/)
 - [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/)
 - [Forgotten Castaways](https://outerwildsmods.com/mods/forgottencastaways/)
 - [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
