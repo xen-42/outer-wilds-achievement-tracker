@@ -32,11 +32,11 @@ namespace AchievementTracker
             RegisterTranslationsFromFiles(Main.Instance, "Translations");
         }
 
-        public static void RegisterAchievement(string uniqueID, bool secret, ModBehaviour mod)
+        public static void RegisterAchievement(string uniqueID, bool secret, bool showDescriptionNotAchieved, ModBehaviour mod)
         {
             if (_achievements.ContainsKey(uniqueID)) return;
 
-            _achievements.Add(uniqueID, new AchievementInfo(uniqueID, mod, secret));
+            _achievements.Add(uniqueID, new AchievementInfo(uniqueID, mod, secret, showDescriptionNotAchieved));
         }
 
         public static void RegisterStockAchievement(string uniqueID, bool secret, string modName)
@@ -46,11 +46,11 @@ namespace AchievementTracker
             _achievements.Add(uniqueID, new AchievementInfo(uniqueID, modName, secret));
         }
 
-        public static void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description)
+        public static void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description, string descriptionNotAchieved)
         {
             if (_achievements.TryGetValue(uniqueID, out var info))
             {
-                info.AddTranslation(language, name, description);
+                info.AddTranslation(language, name, description, descriptionNotAchieved);
             }
         }
 
@@ -77,7 +77,8 @@ namespace AchievementTracker
                         {
                             var name = translationTable[uniqueID].Name;
                             var description = translationTable[uniqueID].Description;
-                            RegisterTranslation(uniqueID, lang, name, description);
+                            var descriptionNotAchieved = translationTable[uniqueID].DescriptionNotAchieved;
+                            RegisterTranslation(uniqueID, lang, name, description, descriptionNotAchieved);
                         }
                     }
                     catch (Exception ex)
@@ -216,35 +217,41 @@ namespace AchievementTracker
         {
             private readonly Dictionary<TextTranslation.Language, string> _nameDict;
             private readonly Dictionary<TextTranslation.Language, string> _descriptionDict;
+            private readonly Dictionary<TextTranslation.Language, string> _descriptionNotAchievedDict;
             public ModBehaviour Mod { get; private set; }
             public string UniqueID { get; private set; }
             public string ModName { get; private set; }
             public bool Secret { get; private set; }
+            public bool ShowDescriptionNotAchieved { get; private set; }
 
-            public AchievementInfo(string uniqueID, ModBehaviour mod, bool secret)
+            public AchievementInfo(string uniqueID, ModBehaviour mod, bool secret, bool showDescriptionNotAchieved = false)
             {
                 _nameDict = new Dictionary<TextTranslation.Language, string>();
                 _descriptionDict = new Dictionary<TextTranslation.Language, string>();
+                _descriptionNotAchievedDict = new Dictionary<TextTranslation.Language, string>();
                 Mod = mod;
                 ModName = Mod.ModHelper.Manifest.Name;
                 UniqueID = uniqueID;
                 Secret = secret;
+                ShowDescriptionNotAchieved = showDescriptionNotAchieved;
             }
-
-            public AchievementInfo(string uniqueID, string modName, bool secret)
+            public AchievementInfo(string uniqueID, string modName, bool secret, bool showDescriptionNotAchieved = false)
             {
                 _nameDict = new Dictionary<TextTranslation.Language, string>();
                 _descriptionDict = new Dictionary<TextTranslation.Language, string>();
+                _descriptionNotAchievedDict = new Dictionary<TextTranslation.Language, string>();
                 Mod = Main.Instance;
                 ModName = modName;
                 UniqueID = uniqueID;
                 Secret = secret;
+                ShowDescriptionNotAchieved = showDescriptionNotAchieved;
             }
 
-            public void AddTranslation(TextTranslation.Language language, string name, string description)
+            public void AddTranslation(TextTranslation.Language language, string name, string description, string descriptionNotAchieved)
             {
                 _nameDict[language] = name;
                 _descriptionDict[language] = description;
+                _descriptionNotAchievedDict[language] = descriptionNotAchieved;
             }
 
             public string GetName()
@@ -276,6 +283,24 @@ namespace AchievementTracker
                 else if (_descriptionDict.TryGetValue(TextTranslation.Language.ENGLISH, out description))
                 {
                     return description;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+
+            public string GetDescriptionNotAchieved()
+            {
+                var language = TextTranslation.Get().m_language;
+
+                if (_descriptionNotAchievedDict.TryGetValue(language, out string descriptionNotAchieved))
+                {
+                    return descriptionNotAchieved;
+                }
+                else if (_descriptionNotAchievedDict.TryGetValue(TextTranslation.Language.ENGLISH, out descriptionNotAchieved))
+                {
+                    return descriptionNotAchieved;
                 }
                 else
                 {
