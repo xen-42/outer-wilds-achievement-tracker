@@ -39,7 +39,9 @@ Add this code to your mod for the Achievements+ API:
 public interface IAchievements
 {
     void RegisterAchievement(string uniqueID, bool secret, ModBehaviour mod);
+    void RegisterAchievement(string uniqueID, bool secret, bool showDescriptionNotAchieved, ModBehaviour mod);
     void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description);
+    void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description, string descriptionNotAchieved);
     void RegisterTranslationsFromFiles(ModBehaviour mod, string folderPath);
     void EarnAchievement(string uniqueID);
     bool HasAchievement(string uniqueID);
@@ -79,11 +81,17 @@ The translations files should look like this:
             "Name": "Hey, what's this button do?",
             "Description": "Press the ejection button in the ship."
         },
+        "ACHIEVEMENT_WITH_HINT_DESCRIPTION": {
+            "Name": "Hint Achievement",
+            "Description": "This description will be shown AFTER the player gets the achievement.",
+			"DescriptionNotAchieved": "This description will be shown BEFORE the player gets the achievement."
+        },
         ...
 }
 ```
 
 Where `AchievementTranslations` is a dictionary of key-value pairs where the keys are the `uniqueID` strings for the achievements, and each value has a `Name` and `Description` field.
+You can also specify a `DescriptionNotAchieved` field if you want the achievement to be semi-hidden, with the intended purpose of DescriptionNotAchieved being a hint of some form for the players.
 
 ## Credits
 
