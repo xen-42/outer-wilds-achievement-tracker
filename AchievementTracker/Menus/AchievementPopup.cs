@@ -74,7 +74,7 @@ namespace AchievementTracker.Menus
             {
                 GameObject.DestroyImmediate(_popup);
             }
-            _popup = AchievementMenu.CreateAchievementUI(achievement.UniqueID, achievement.GetName(), achievement.GetDescription(), false, achievement.Mod);
+            _popup = AchievementMenu.CreateAchievementUI(achievement.UniqueID, achievement.GetName(), achievement.GetDescription(), false, false, achievement.Mod);
             _popup.GetComponent<RectTransform>().SetParent(_popupRoot.transform);
             _popup.transform.position = new Vector3(160, 40, 0);
         }
@@ -90,7 +90,7 @@ namespace AchievementTracker.Menus
             {
                 GameObject.DestroyImmediate(_popup);
             }
-            _popup = AchievementMenu.CreateAchievementUI(achievement.UniqueID, achievement.GetName(), $"{current} / {final}", true, achievement.Mod);
+            _popup = AchievementMenu.CreateAchievementUI(achievement.UniqueID, achievement.GetName(), $"{current} / {final}", true, achievement.ShowDescriptionNotAchieved, achievement.Mod);
             _popup.GetComponent<RectTransform>().SetParent(_popupRoot.transform);
             _popup.transform.position = new Vector3(160, 40, 0);
         }

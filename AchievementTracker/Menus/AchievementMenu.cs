@@ -276,17 +276,18 @@ namespace AchievementTracker.Menus
 
                 var uniqueID = achievement.Value.UniqueID;
                 var name = achievement.Value.GetName();
-                var description = achievement.Value.GetDescription();
                 var locked = !AchievementData.HasAchievement(achievement.Value.UniqueID);
+                var showDescriptionNotAchieved = achievement.Value.ShowDescriptionNotAchieved;
+                var description = (locked && showDescriptionNotAchieved) ? achievement.Value.GetDescriptionNotAchieved() : achievement.Value.GetDescription();
                 var mod = achievement.Value.Mod;
 
-                var ui = CreateAchievementUI(uniqueID, name, description, locked, mod);
+                var ui = CreateAchievementUI(uniqueID, name, description, locked, hideIconIfLocked: showDescriptionNotAchieved, mod);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
             if (hiddenCount > 0 && count < PAGE_LIMIT)
             {
-                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) hidden.", "", false, Main.Instance);
+                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) hidden.", "", false, false, Main.Instance);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
@@ -358,13 +359,17 @@ namespace AchievementTracker.Menus
             return panelObject;
         }
 
-        public static GameObject CreateAchievementUI(string uniqueID, string name, string description, bool locked, ModBehaviour mod)
+        public static GameObject CreateAchievementUI(string uniqueID, string name, string description, bool locked, bool hideIconIfLocked, ModBehaviour mod)
         {
             // Since we call this from the popup class now just make sure the font isnt null
             if (!_font) _font = Resources.FindObjectsOfTypeAll<Font>().Where(x => x.name == "Adobe - SerifGothicStd-ExtraBold").FirstOrDefault();
 
-            var texture = ImageUtilities.GetTexture(mod, $"Icons/{uniqueID}");
-            if (locked && texture) texture = ImageUtilities.GreyscaleImage(texture);
+            Texture2D texture = null;
+            if(!(locked && hideIconIfLocked)) // Don't get icon if not needed
+            {
+                texture = ImageUtilities.GetTexture(mod, $"Icons/{uniqueID}");
+                if (locked && texture) texture = ImageUtilities.GreyscaleImage(texture);
+            }
 
             var panelObject = new GameObject($"Panel_{uniqueID}");
             panelObject.AddComponent<CanvasRenderer>();

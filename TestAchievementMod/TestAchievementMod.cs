@@ -26,11 +26,14 @@ namespace TestAchievementMod
             // This one is (won't show up until you earn it)
             AchievementsAPI.RegisterAchievement("TEST.EYE", true, this);
 
-            // This one will use the GlobalMessenger
+            // This one is semi-secret (will show with a hint description until you earn it, then will show the normal description and icon)
+            AchievementsAPI.RegisterAchievement("TEST.SEMISECRET", false, showDescriptionNotAchieved:true, this);
+
+            // These ones will use the GlobalMessenger
             AchievementsAPI.RegisterAchievement("TEST.MARSHMALLOW", false, this);
             AchievementsAPI.RegisterAchievement("TEST.DIE", true, this);
 
-            // Earn an achievement when you finish roasting a marshmallow
+            // Earn an achievement when you finish roasting a marshmallow / when you die
             GlobalMessenger.AddListener("ExitRoastingMode", OnExitRoastingMode);
             GlobalMessenger<DeathType>.AddListener("PlayerDeath", OnPlayerDeath);
 
@@ -43,7 +46,8 @@ namespace TestAchievementMod
             // Now add the translation stuff
             AchievementsAPI.RegisterTranslation("TEST.SOLAR_SYSTEM", TextTranslation.Language.ENGLISH, "Start", "You started the game.");
             AchievementsAPI.RegisterTranslation("TEST.EYE", TextTranslation.Language.ENGLISH, "End", "You ended the game.");
-            
+            AchievementsAPI.RegisterTranslation("TEST.SEMISECRET", TextTranslation.Language.ENGLISH, "Clues for everyone", "Get the semi-secret achievement by dying.", "I love hints! This achievement is the same as 'Ow'");
+
             AchievementsAPI.RegisterTranslation("TEST.MARSHMALLOW", TextTranslation.Language.ENGLISH, "Marshmallow", "Roast a marshmallow. Better than NH.");
             AchievementsAPI.RegisterTranslation("TEST.DIE", TextTranslation.Language.ENGLISH, "Ow", "Die.");
 
@@ -53,6 +57,7 @@ namespace TestAchievementMod
             // I'll do french too idk
             AchievementsAPI.RegisterTranslation("TEST.SOLAR_SYSTEM", TextTranslation.Language.FRENCH, "Le début", "Tu as commencé le jeu.");
             AchievementsAPI.RegisterTranslation("TEST.EYE", TextTranslation.Language.FRENCH, "La fin", "Tu as fini le jeu.");
+            AchievementsAPI.RegisterTranslation("TEST.SEMISECRET", TextTranslation.Language.FRENCH, "Indices pour tout le monde", "Obtenir le succès semi-secret en mourant.", "J'adore les indices! Ce succès est le même que 'Ow'");
 
             AchievementsAPI.RegisterTranslation("TEST.MARSHMALLOW", TextTranslation.Language.FRENCH, "Guimauve", "Rôtir une guimauve. Mieux que NH. Cette blague ne marche pas en français.");
             AchievementsAPI.RegisterTranslation("TEST.DIE", TextTranslation.Language.FRENCH, "Ow", "Mourez.");
@@ -90,6 +95,7 @@ namespace TestAchievementMod
         private void OnPlayerDeath(DeathType _)
         {
             AchievementsAPI.EarnAchievement("TEST.DIE");
+            AchievementsAPI.EarnAchievement("TEST.SEMISECRET");
         }
     }
 }

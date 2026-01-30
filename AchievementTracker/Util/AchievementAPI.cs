@@ -7,12 +7,20 @@ namespace AchievementTracker.Util
     {
         public void RegisterAchievement(string uniqueID, bool secret, ModBehaviour mod)
         {
-            AchievementManager.RegisterAchievement(uniqueID, secret, mod);
+            AchievementManager.RegisterAchievement(uniqueID, secret, showDescriptionNotAchieved: false, mod);
+        }
+        public void RegisterAchievement(string uniqueID, bool secret, bool showDescriptionNotAchieved, ModBehaviour mod)
+        {
+            AchievementManager.RegisterAchievement(uniqueID, secret, showDescriptionNotAchieved, mod);
         }
 
         public void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description)
         {
-            AchievementManager.RegisterTranslation(uniqueID, language, name, description);
+            AchievementManager.RegisterTranslation(uniqueID, language, name, description, descriptionNotAchieved: "");
+        }
+        public void RegisterTranslation(string uniqueID, TextTranslation.Language language, string name, string description, string descriptionNotAchieved)
+        {
+            AchievementManager.RegisterTranslation(uniqueID, language, name, description, descriptionNotAchieved);
         }
 
         public void RegisterTranslationsFromFiles(ModBehaviour mod, string folderPath)
