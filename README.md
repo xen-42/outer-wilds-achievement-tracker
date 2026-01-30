@@ -6,17 +6,26 @@ Tracks Steam achievements in an in-game menu for people playing on other platfor
 
 Also tracks custom mod achievements.
 
-## Supported mods
+**If you make a mod that has achievements, please open a PR to add it to this list!**
 
+## Supported Mods
+
+- [Core Collapse](https://outerwildsmods.com/mods/corecollapse/)
+- [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/)
+- [Forgotten Castaways](https://outerwildsmods.com/mods/forgottencastaways/)
+- [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
+- [Grapefruit](https://outerwildsmods.com/mods/grapefruit/)
+- [Hearthian Golf The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
 - [New Horizons](https://outerwildsmods.com/mods/newhorizons/)
-    - [New Horizons Examples](https://outerwildsmods.com/mods/newhorizonsexamples/)
-    - [Signals+](https://outerwildsmods.com/mods/signals/)
+- [New Horizons Examples](https://outerwildsmods.com/mods/newhorizonsexamples/)
 - [Outer Thomas Echoes of the Tank Engine](https://outerwildsmods.com/mods/outerthomasechoesofthetankengine/)
+- [Real Solar System](https://outerwildsmods.com/mods/realsolarsystem/)
+- [Ship Enhancements](https://outerwildsmods.com/mods/shipenhancements/)
+- [Signals+](https://outerwildsmods.com/mods/signals/)
+- [The Mystery of I Cannot Find My Cat](https://outerwildsmods.com/mods/themysteryoficannotfindmycat/)
+- [The Stranger They Are](https://outerwildsmods.com/mods/thestrangertheyare/)
 
-## Achievement mods
-- [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/) 
-
-More to come...
+And more to come...
 
 ## Settings
 
