@@ -99,3 +99,4 @@ You can also specify a `DescriptionNotAchieved` field if you want the achievemen
 I wanna thank those who contributed translations:
 - Russian ([Tllya](https://github.com/Tllya))
 - Spanish ([LikeMauro](https://github.com/LikeMauro))
+- Chinese ([SheepCreater2](https://github.com/SheepCreater2))
