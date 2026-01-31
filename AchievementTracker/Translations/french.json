@@ -1,5 +1,6 @@
 {
   "TitleTranslation": "Succès",
+  "AchievementHiddenTranslation": "$COUNT succès caché(s).",
   "AchievementTranslations": {
     "TERRIBLE_FATE": {
       "Name": "Ta terrible destinée.",
