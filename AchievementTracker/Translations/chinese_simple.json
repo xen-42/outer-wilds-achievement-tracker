@@ -1,0 +1,133 @@
+{
+    "TitleTranslation" : "成就",
+    "AchievementTranslations": {
+        "TERRIBLE_FATE": {
+            "Name": "你的命运真是悲惨！",
+            "Description": "没有回头路。"
+        },
+        "WHATS_THIS_BUTTON": {
+            "Name": "喂，这个按钮做什么用的?",
+            "Description": "按下飞船上的逃脱按钮。"
+        },
+        "ALPHA_PILOT": {
+            "Name": "飞行高手",
+            "Description": "亲自飞到太阳站。"
+        },
+        "YOU_TRIED": {
+            "Name": "这值得一试",
+            "Description": "你已尝试逃离太阳系。"
+        },
+        "BEGINNERS_LUCK": {
+            "Name": "新手运气",
+            "Description": "在第一个循环中抵达宇宙之眼。"
+        },
+        "SATELLITE": {
+            "Name": "刚体",
+            "Description": "将哈斯人卫星撞离木炉星轨道"
+        },
+        "HEARTH_TO_MOON": {
+            "Name": "从木炉星飞向卫星",
+            "Description": "将模型飞船停在废岩星。"
+        },
+        "DEEP_IMPACT": {
+            "Name": "强烈冲击",
+            "Description": "以足够快的速递进入深巨星海洋来突破水流。"
+        },
+        "HARMONIC_CONVERGENCE": {
+            "Name": "和谐汇聚",
+            "Description": "备妥所有旅行家的乐器和信号镜。"
+        },
+        "MUSEUM": {
+            "Name": "归博物馆所有！",
+            "Description": "将文物带回博物馆。"
+        },
+        "DIEHARD": {
+            "Name": "视死如归",
+            "Description": "在承受超过1000点伤害（并治愈）后，（活着）结束一个时间循环，"
+        },
+        "PCHOOOOOOO": {
+            "Name": "咻！",
+            "Description": "用重力炮发射你的飞船。"
+        },
+        "GONE_IN_60_SECONDS": {
+            "Name": "急速60秒",
+            "Description": "醒来后60秒内死亡。"
+        },
+        "CARCINOGENS": {
+            "Name": "嗯，都是致癌物...",
+            "Description": "吃下10个烤焦的棉花糖。"
+        },
+        "CUTTING_IT_CLOSE": {
+            "Name": "惊险万分",
+            "Description": "误用太空服的氧气。"
+        },
+        "MICAS_WRATH": {
+            "Name": "米卡之怒",
+            "Description": "通过飞进太阳或空心灯来摧毁模型火箭。"
+        },
+        "STUDIOUS": {
+            "Name": "考古学家",
+            "Description": "完成飞船日志。"
+        },
+        "AROUND_THE_WORLD": {
+            "Name": "环游世界90秒",
+            "Description": "90秒内漂游外星站。"
+        },
+        "SILENCED_CARTOGRAPHER": {
+            "Name": "静默的绘图师",
+            "Description": "使深空卫星无法运行。"
+        },
+        "TUBULAR": {
+            "Name": "管式流动！",
+            "Description": "驾驶艇筏乘风破浪至少15秒。"
+        },
+        "EARLY_ADOPTER": {
+            "Name": "第一个吃螃蟹的人",
+            "Description": "尝试使用第二例文物原型，好奇心害死猫，但时间循环可以起死回生。"
+        },
+        "GRATE_FILTER": {
+            "Name": "栅选",
+            "Description": "游过大坝栅栏，不是什么人都能做到的！"
+        },
+        "FLAT_HEARTHER": {
+            "Name": "压扁的哈斯人",
+            "Description": "站在运行的链式升降机下方。"
+        },
+        "CELCIUS": {
+            "Name": "232.78摄氏度",
+            "Description": "这个知识似乎无法被禁锢的！"
+        },
+        "GHOSTS": {
+            "Name": "机器中的幽灵",
+            "Description": "在一个时间循环中抵达所有3间禁忌档案室而不被幽灵抓住。"
+        },
+        "SLEEP_WAKE_REPEAT": {
+            "Name": "睡了又醒，醒了又睡",
+            "Description": "在一个时间循环中以5中不同的方式从梦中醒来。"
+        },
+        "SIMULATION": {
+            "Name": "模拟假设",
+            "Description": "尝试在一处正常的篝火处使用文物。嗯，解决了！"
+        },
+        "FIRE_ARROWS": {
+            "Name": "放箭",
+            "Description": "向外星站的人造太阳发射小侦察兵。"
+        },
+        "ONE_NINE": {
+            "Name": "1 / 900",
+            "Description": "呀哈哈！你找到我了！"
+        },
+        "TAKEMEALIVE": {
+            "Name": "你们永远无法活捉我！",
+            "Description": "通过跃入“死亡”而非躲避来摆脱你的追赶者。"
+        },
+        "OOFMYBONES": {
+            "Name": "嗷嗷，我的骨头",
+            "Description": "让追赶者松松你的骨头。"
+        },
+        "FOUND_SIGNAL": {
+        "Name": "找到信号",
+        "Description": "呃……算你搞定了吧？"
+      }
+    }
+}
