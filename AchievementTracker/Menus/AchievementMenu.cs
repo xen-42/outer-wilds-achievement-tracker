@@ -287,7 +287,8 @@ namespace AchievementTracker.Menus
 
             if (hiddenCount > 0 && count < PAGE_LIMIT)
             {
-                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", $"{hiddenCount} achievement(s) hidden.", "", false, false, Main.Instance);
+                var achievementHidden = TranslationData.GetAchievementHidden().Replace("$COUNT", hiddenCount.ToString());
+                var ui = CreateAchievementUI("ACHIEVEMENTS_HIDDEN", achievementHidden, "", false, false, Main.Instance);
                 ui.GetComponent<RectTransform>().SetParent(_currentAchievementList.transform);
             }
 
