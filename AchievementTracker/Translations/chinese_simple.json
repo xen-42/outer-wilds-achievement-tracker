@@ -1,5 +1,6 @@
 {
     "TitleTranslation" : "成就",
+    "AchievementHiddenTranslation" : "还有$COUNT个成就未解锁。",
     "AchievementTranslations": {
         "TERRIBLE_FATE": {
             "Name": "你的命运真是悲惨！",
