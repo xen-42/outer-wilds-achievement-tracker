@@ -10,11 +10,15 @@ Also tracks custom mod achievements.
 
 ## Supported Mods
 
+- [Borrowed Tomorrows](https://outerwildsmods.com/mods/borrowedtomorrows/)
+- [Bruce Saves the Worlds](https://outerwildsmods.com/mods/brucesavestheworlds/)
 - [Core Collapse](https://outerwildsmods.com/mods/corecollapse/)
 - [Cut Achievements](https://outerwildsmods.com/mods/cutachievements/)
 - [Forgotten Castaways](https://outerwildsmods.com/mods/forgottencastaways/)
 - [Fret's Quest](https://outerwildsmods.com/mods/fretsquest/)
+- [Ghost in the Machine](https://outerwildsmods.com/mods/ghostinthemachine/)
 - [Grapefruit](https://outerwildsmods.com/mods/grapefruit/)
+- [Hearthian Fishing](https://outerwildsmods.com/mods/hearthianfishing/)
 - [Hearthian Golf The Front Nine](https://outerwildsmods.com/mods/hearthiangolfthefrontnine/)
 - [New Horizons](https://outerwildsmods.com/mods/newhorizons/)
 - [New Horizons Examples](https://outerwildsmods.com/mods/newhorizonsexamples/)
